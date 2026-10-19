@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Không tìm thấy kết quả cho “súng nước” | ShopDemo</title>
+  <meta name="description" content="Trang mẫu cải tiến giao diện khi tìm kiếm không có kết quả: thông báo rõ ràng, gợi ý từ khóa và sản phẩm liên quan.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#noi-dung-chinh">Bỏ qua, đến nội dung chính</a>
+
+  <!-- ===== Đầu trang: logo + ô tìm kiếm ===== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="#" aria-label="ShopDemo - Trang chủ">Shop<span>Demo</span></a>
+      <form class="search" role="search" action="https://tiki.vn/search" method="get">
+        <label class="visually-hidden" for="q">Tìm kiếm sản phẩm</label>
+        <input class="search__input" id="q" name="q" type="search" value="súng nước" autocomplete="off">
+        <button class="search__submit" type="submit">Tìm kiếm</button>
+      </form>
+    </div>
+  </header>
+
+  <main class="container" id="noi-dung-chinh">
+
+    <nav class="breadcrumb" aria-label="Đường dẫn">
+      <ol>
+        <li><a href="#">Trang chủ</a></li>
+        <li aria-current="page">Kết quả tìm kiếm “súng nước”</li>
+      </ol>
+    </nav>
+
+    <!-- ===== Khối A + B: Thông báo và cách khắc phục ===== -->
+    <section class="empty-state" aria-labelledby="empty-title">
+      <svg class="empty-state__icon" viewBox="0 0 64 64" width="64" height="64" aria-hidden="true" focusable="false">
+        <circle cx="28" cy="28" r="16" fill="none" stroke="currentColor" stroke-width="5"/>
+        <path d="M40 40 L56 56" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+        <path d="M22 22 L34 34 M34 22 L22 34" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+
+      <div class="empty-state__content" role="status">
+        <h1 class="empty-state__title" id="empty-title">Không tìm thấy kết quả cho “súng nước”</h1>
+        <p class="empty-state__text">Có thể từ khóa chưa khớp với sản phẩm nào, hoặc bộ lọc bên dưới đang giới hạn kết quả.</p>
+
+        <div class="applied-filters">
+          <span class="applied-filters__label">Đang lọc:</span>
+          <ul class="applied-filters__list">
+            <li class="tag">Độ tuổi: 3 - 5 tuổi</li>
+            <li class="tag">Màu sắc: Hồng</li>
+          </ul>
+          <a class="btn btn--primary" href="https://tiki.vn/search?q=s%C3%BAng%20n%C6%B0%E1%BB%9Bc">Tìm lại không lọc</a>
+        </div>
+
+        <h2 class="tips__title">Thử cách sau</h2>
+        <ul class="tips">
+          <li>Kiểm tra lại chính tả từ khóa.</li>
+          <li>Dùng từ khóa ngắn hoặc tổng quát hơn.</li>
+          <li>Chọn một từ khóa gợi ý bên dưới.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Khối C: Gợi ý từ khóa ===== -->
+    <section class="section" aria-labelledby="keywords-title">
+      <h2 class="section__title" id="keywords-title">Thử tìm với từ khóa khác trên Tiki</h2>
+      <ul class="chips">
+          <li><a class="chip" href="https://tiki.vn/search?q=s%C3%BAng%20n%C6%B0%E1%BB%9Bc%20%C4%91%E1%BB%93%20ch%C6%A1i">súng nước đồ chơi</a></li>
+          <li><a class="chip" href="https://tiki.vn/search?q=s%C3%BAng%20b%E1%BA%AFn%20bong%20b%C3%B3ng">súng bắn bong bóng</a></li>
+          <li><a class="chip" href="https://tiki.vn/search?q=%C4%91%E1%BB%93%20ch%C6%A1i%20m%C3%B9a%20h%C3%A8">đồ chơi mùa hè</a></li>
+          <li><a class="chip" href="https://tiki.vn/search?q=%C4%91%E1%BB%93%20ch%C6%A1i%20b%E1%BB%83%20b%C6%A1i">đồ chơi bể bơi</a></li>
+          <li><a class="chip" href="https://tiki.vn/search?q=b%C3%B3ng%20n%C6%B0%E1%BB%9Bc">bóng nước</a></li>
+          <li><a class="chip" href="https://tiki.vn/search?q=%C4%91%E1%BB%93%20ch%C6%A1i%20ngo%C3%A0i%20tr%E1%BB%9Di">đồ chơi ngoài trời</a></li>
+      </ul>
+    </section>
+
+    <!-- ===== Khối D: Sản phẩm liên quan ===== -->
+    <section class="section" aria-labelledby="suggested-title">
+      <h2 class="section__title" id="suggested-title">Có thể bạn quan tâm</h2>
+      <p class="section__note">Đây là sản phẩm gợi ý minh họa, không phải kết quả cho “súng nước”. Nút “Thêm vào giỏ” chưa có chức năng xử lý.</p>
+      <ul class="product-grid">
+          <li>
+            <article class="product-card">
+              <figure class="product-card__media">
+                <img src="images/sung-nuoc.svg" alt="Hình minh họa súng nước màu xanh" width="400" height="400" loading="lazy">
+              </figure>
+              <div class="product-card__body">
+                <p class="product-card__reason">Gần với “súng nước”</p>
+                <h3 class="product-card__name">Súng nước đồ chơi bình lớn bắn xa 8 m</h3>
+                <p class="product-card__price"><span class="visually-hidden">Giá </span>129.000 ₫</p>
+                <button class="btn btn--primary btn--block" type="button">Thêm vào giỏ</button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="product-card">
+              <figure class="product-card__media">
+                <img src="images/sung-bong-bong.svg" alt="Hình minh họa súng bắn bong bóng màu hồng" width="400" height="400" loading="lazy">
+              </figure>
+              <div class="product-card__body">
+                <p class="product-card__reason">Cùng danh mục Đồ chơi ngoài trời</p>
+                <h3 class="product-card__name">Súng bắn bong bóng tự động có đèn</h3>
+                <p class="product-card__price"><span class="visually-hidden">Giá </span>99.000 ₫</p>
+                <button class="btn btn--primary btn--block" type="button">Thêm vào giỏ</button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="product-card">
+              <figure class="product-card__media">
+                <img src="images/bong-nuoc.svg" alt="Hình minh họa các quả bóng nước nhiều màu" width="400" height="400" loading="lazy">
+              </figure>
+              <div class="product-card__body">
+                <p class="product-card__reason">Thường mua cùng súng nước</p>
+                <h3 class="product-card__name">Bóng nước tự buộc, bộ 111 quả nhiều màu</h3>
+                <p class="product-card__price"><span class="visually-hidden">Giá </span>45.000 ₫</p>
+                <button class="btn btn--primary btn--block" type="button">Thêm vào giỏ</button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="product-card">
+              <figure class="product-card__media">
+                <img src="images/be-boi.svg" alt="Hình minh họa bể bơi phao màu vàng" width="400" height="400" loading="lazy">
+              </figure>
+              <div class="product-card__body">
+                <p class="product-card__reason">Liên quan: đồ chơi mùa hè</p>
+                <h3 class="product-card__name">Bể bơi phao gia đình 2 m cho bé</h3>
+                <p class="product-card__price"><span class="visually-hidden">Giá </span>289.000 ₫</p>
+                <button class="btn btn--primary btn--block" type="button">Thêm vào giỏ</button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="product-card">
+              <figure class="product-card__media">
+                <img src="images/do-choi-cat.svg" alt="Hình minh họa xô và xẻng chơi cát" width="400" height="400" loading="lazy">
+              </figure>
+              <div class="product-card__body">
+                <p class="product-card__reason">Cùng danh mục Đồ chơi ngoài trời</p>
+                <h3 class="product-card__name">Bộ xô xẻng chơi cát bãi biển 12 chi tiết</h3>
+                <p class="product-card__price"><span class="visually-hidden">Giá </span>79.000 ₫</p>
+                <button class="btn btn--primary btn--block" type="button">Thêm vào giỏ</button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="product-card">
+              <figure class="product-card__media">
+                <img src="images/ao-phao.svg" alt="Hình minh họa áo phao màu đỏ" width="400" height="400" loading="lazy">
+              </figure>
+              <div class="product-card__body">
+                <p class="product-card__reason">Liên quan: đồ bơi cho bé</p>
+                <h3 class="product-card__name">Áo phao bơi trẻ em có khóa an toàn</h3>
+                <p class="product-card__price"><span class="visually-hidden">Giá </span>159.000 ₫</p>
+                <button class="btn btn--primary btn--block" type="button">Thêm vào giỏ</button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="product-card">
+              <figure class="product-card__media">
+                <img src="images/kinh-boi.svg" alt="Hình minh họa kính bơi màu xanh" width="400" height="400" loading="lazy">
+              </figure>
+              <div class="product-card__body">
+                <p class="product-card__reason">Liên quan: đồ bơi cho bé</p>
+                <h3 class="product-card__name">Kính bơi trẻ em chống đọng sương</h3>
+                <p class="product-card__price"><span class="visually-hidden">Giá </span>65.000 ₫</p>
+                <button class="btn btn--primary btn--block" type="button">Thêm vào giỏ</button>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="product-card">
+              <figure class="product-card__media">
+                <img src="images/phao-vit.svg" alt="Hình minh họa phao bơi hình vịt" width="400" height="400" loading="lazy">
+              </figure>
+              <div class="product-card__body">
+                <p class="product-card__reason">Liên quan: đồ chơi mùa hè</p>
+                <h3 class="product-card__name">Phao bơi tròn hình vịt vàng cho bé</h3>
+                <p class="product-card__price"><span class="visually-hidden">Giá </span>119.000 ₫</p>
+                <button class="btn btn--primary btn--block" type="button">Thêm vào giỏ</button>
+              </div>
+            </article>
+          </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Trang mẫu phục vụ bài tập phát triển giao diện thương mại điện tử. Sản phẩm, giá và hình ảnh chỉ mang tính minh họa.</p>
+    </div>
+  </footer>
+</body>
+</html>
