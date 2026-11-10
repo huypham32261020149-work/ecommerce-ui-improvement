@@ -1,0 +1,100 @@
+
+/* DINH DANG CHUNG */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  font-family: Arial, sans-serif;
+  color: #222;
+  background-color: #f8f9fa;
+}
+
+section {
+  margin-bottom: 32px;
+}
+
+/* PHAN A: DAI HOC UEH */
+.ueh-title {
+  color: blue;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 30px;
+}
+
+/* PHAN B: KHOA CNTTD */
+.cnttd-title {
+  color: rgba(255, 0, 0, 0.5);
+  text-align: right;
+  font-style: italic;
+  font-size: 15px;
+
+  border: 2px dotted yellow;
+  border-radius: 10px;
+  background-color: #d9d9d9;
+  padding: 12px;
+}
+
+/* PHAN C: HIEU UNG BIT-UEH */
+.bit-text {
+  display: inline-block;
+  padding: 8px 14px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #c52218;
+
+  background: linear-gradient(
+    90deg,
+    #b7e86e,
+    #f3f1a0,
+    #b7e86e
+  );
+
+  text-shadow:
+    2px 2px 0 #5c4a00,
+    4px 4px 6px rgba(0, 0, 0, 0.65);
+}
+
+/* PHAN D: LOGO BIT LAM HINH NEN */
+.logo-background {
+  height: 180px;
+  border: 1px solid #cccccc;
+
+  background-image: url("images/BIT_logo.png");
+  background-size: 30px auto;
+  background-repeat: repeat;
+  background-attachment: fixed;
+}
+
+/* PHAN E: THUOC TINH CHUNG */
+.overflow-hidden,
+.overflow-ellipsis,
+.overflow-nowrap {
+  width: 100px;
+  height: 50px;
+  padding: 4px;
+  border: 1px solid #999999;
+  background-color: white;
+}
+
+/* E1: AN NOI DUNG TRAN */
+.overflow-hidden {
+  overflow: hidden;
+}
+
+/* E2: CAT NOI DUNG BANG DAU ... */
+.overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* E3: KHONG TU DONG XUONG DONG */
+.overflow-nowrap {
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
