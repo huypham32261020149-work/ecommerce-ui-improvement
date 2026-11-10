@@ -1,0 +1,41 @@
+
+/* =================================
+   BAI TAP 4 - MENU CSS
+   ================================= */
+
+/* Dinh dang trang */
+body {
+  margin: 0;
+  padding: 30px;
+  background-color: white;
+  font-family: "Times New Roman", serif;
+}
+
+/* Dinh dang danh sach menu */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+/* Sap xep cac muc menu theo hang ngang */
+.menu li {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+/* Dinh dang lien ket trong menu */
+.menu a {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 90px;
+  padding: 6px 10px;
+
+  background-color: #00FFFF;
+  color: blue;
+
+  font-size: 20px;
+  text-align: center;
+  text-decoration: underline;
+}
