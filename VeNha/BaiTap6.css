@@ -1,0 +1,159 @@
+
+/* ======================================
+   BAI TAP 6 - MY PORTFOLIO
+   ====================================== */
+
+/* 1. DINH DANG CHUNG */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+
+/* 2. KHU VUC PORTFOLIO */
+.portfolio {
+  max-width: 1120px;
+  margin: 40px auto;
+  padding: 30px 20px;
+  background-color: #f8f8f8;
+  text-align: center;
+}
+
+
+/* 3. TIEU DE MY PORTFOLIO */
+.portfolio h2 {
+  position: relative;
+  margin: 0 0 30px;
+  padding-bottom: 15px;
+
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  color: #333333;
+}
+
+/* Duong gach xanh duoi tieu de */
+.portfolio h2::after {
+  content: "";
+  position: absolute;
+
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 50px;
+  height: 2px;
+  background-color: #32b3a5;
+}
+
+
+/* 4. DANH SACH DANH MUC */
+.list-tab {
+  list-style: none;
+  margin: 0 0 30px;
+  padding: 0;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+/* Dinh dang lien ket */
+.list-tab a {
+  color: #444444;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+/* Muc All co mau xanh */
+.list-tab li:first-child a {
+  color: #32b3a5;
+  font-weight: bold;
+}
+
+/* Hieu ung khi di chuot */
+.list-tab a:hover {
+  color: #32b3a5;
+}
+
+/* Ho tro dieu huong bang ban phim */
+.list-tab a:focus-visible {
+  outline: 2px solid #32b3a5;
+  outline-offset: 4px;
+}
+
+
+/* 5. THU VIEN HINH ANH */
+.galerry {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Tung o anh */
+.galerry li {
+  min-width: 0;
+}
+
+/* Lien ket bao quanh anh */
+.galerry a {
+  display: block;
+}
+
+/* Dinh dang anh */
+.galerry img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 350 / 260;
+  object-fit: cover;
+
+  background-color: #9ccc79;
+}
+
+/* Hieu ung hover nhe */
+.galerry img:hover {
+  opacity: 0.85;
+}
+
+
+/* 6. HIEN THI TREN MAY TINH BANG */
+@media (max-width: 768px) {
+  .galerry {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* 7. HIEN THI TREN DIEN THOAI */
+@media (max-width: 480px) {
+  .portfolio {
+    margin: 20px auto;
+    padding: 20px 12px;
+  }
+
+  .portfolio h2 {
+    font-size: 24px;
+  }
+
+  .list-tab {
+    gap: 12px;
+  }
+
+  .galerry {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
