@@ -1,0 +1,119 @@
+
+/* =====================================
+   BAI TAP 7 - WEBSITE LAYOUT
+   ===================================== */
+
+/* 1. DINH DANG CHUNG */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #222222;
+}
+
+
+/* 2. KHUNG WRAPPER */
+#wrapper {
+  position: relative;
+
+  width: 550px;
+  max-width: 100%;
+  margin: 30px auto;
+  padding: 8px;
+
+  border: 3px solid #333333;
+  background-color: #ffffff;
+  box-shadow: 6px 6px 10px
+              rgba(0, 0, 0, 0.2);
+
+  /* Tao bo cuc bang CSS Grid */
+  display: grid;
+
+  grid-template-columns: 110px 1fr;
+
+  grid-template-rows:
+    70px
+    300px
+    55px;
+
+  grid-template-areas:
+    "header header"
+    "nav    main"
+    "footer footer";
+
+  gap: 6px;
+}
+
+
+/* 3. NHAN WRAPPER */
+#wrapper::before {
+  content: "wrapper";
+  position: absolute;
+
+  top: -25px;
+  left: 0;
+
+  font-size: 16px;
+}
+
+
+/* 4. DINH DANG CHUNG 4 KHU VUC */
+header,
+nav,
+main,
+footer {
+  border: 2px solid #333333;
+  padding: 10px;
+  background-color: #ffffff;
+}
+
+
+/* 5. KHU VUC HEADER */
+header {
+  grid-area: header;
+}
+
+
+/* 6. KHU VUC NAV */
+nav {
+  grid-area: nav;
+}
+
+
+/* 7. KHU VUC MAIN */
+main {
+  grid-area: main;
+}
+
+
+/* 8. KHU VUC FOOTER */
+footer {
+  grid-area: footer;
+}
+
+
+/* 9. DIEU CHINH TREN DIEN THOAI */
+@media (max-width: 480px) {
+  #wrapper {
+    grid-template-columns: 75px 1fr;
+
+    grid-template-rows:
+      60px
+      240px
+      50px;
+
+    gap: 5px;
+  }
+
+  header,
+  nav,
+  main,
+  footer {
+    padding: 6px;
+  }
+}
