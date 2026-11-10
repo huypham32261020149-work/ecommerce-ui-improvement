@@ -1,0 +1,112 @@
+
+/* =====================================
+   BAI TAP 5 - BEST SHARED HOSTING
+   ===================================== */
+
+/* 1. Dinh dang chung */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+/* 2. Khung noi dung chinh */
+.best-shared {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+/* 3. Logo BIT */
+.logo {
+  margin: 0 0 24px;
+}
+
+.logo img {
+  display: block;
+  width: 200px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* 4. Tieu de */
+.best-shared h2 {
+  margin: 0 0 24px;
+  font-size: 38px;
+  font-weight: normal;
+  line-height: 1.3;
+}
+
+/* Chu Shared Hosting mau xanh */
+.best-shared h2 strong {
+  color: #00AEEF;
+  font-weight: bold;
+}
+
+/* 5. Doan mo ta */
+.lead-text {
+  margin: 0 auto 32px;
+  max-width: 800px;
+
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555555;
+}
+
+/* 6. Danh sach nut */
+.btn-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Sap xep hai nut theo hang ngang */
+.btn-list li {
+  display: inline-block;
+  margin: 0 10px 12px;
+}
+
+/* 7. Dinh dang lien ket thanh nut */
+.btn-list a {
+  display: inline-block;
+
+  min-width: 140px;
+  padding: 14px 25px;
+
+  background-color: #303234;
+  color: #ffffff;
+
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+/* 8. Hieu ung khi di chuot */
+.btn-list a:hover {
+  background-color: #00AEEF;
+}
+
+/* 9. Ho tro dieu huong bang ban phim */
+.btn-list a:focus-visible {
+  outline: 3px solid #00AEEF;
+  outline-offset: 3px;
+}
+
+/* 10. Giao dien tren dien thoai */
+@media (max-width: 600px) {
+  .best-shared h2 {
+    font-size: 28px;
+  }
+
+  .btn-list li {
+    margin: 6px;
+  }
+}
