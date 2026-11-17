@@ -1,98 +1,116 @@
-# E-commerce UI Improvement
+# JavaScript Labs | Phạm Quang Huy
 
-## 1. Giới thiệu
+Bài thực hành cá nhân học phần **Phát triển ứng dụng Thương mại điện tử** - TS. Nguyễn Mạnh Tuấn.
 
-Dự án được thực hiện trong khuôn khổ bài tập cá nhân Chương 1 của môn Phát triển ứng dụng Thương mại điện tử.
+Repository tổng hợp mã nguồn và kết quả thực hành của **Lab 08, Lab 09 và Lab 10**. Trang `index.html` đóng vai trò portfolio cá nhân và trang điều hướng, giúp giảng viên mở từng Lab và kiểm tra các Exercise trực tiếp trên trình duyệt.
 
-Em lựa chọn cải tiến giao diện tìm kiếm khi không tìm thấy sản phẩm phù hợp trên website thương mại điện tử, tham khảo từ Tiki.
+## 1. Thông tin sinh viên
 
-Mục tiêu của dự án là giúp người dùng dễ dàng nhận biết thông báo không có kết quả, tìm kiếm lại bằng từ khóa gợi ý và khám phá những sản phẩm liên quan.
+| Thông tin | Chi tiết |
+|---|---|
+| Họ và tên | **Phạm Quang Huy** |
+| Mã số sinh viên | **32261020149** |
+| Lớp học phần | **[Bổ sung tên lớp học phần]** |
+| Học phần | Phát triển ứng dụng Thương mại điện tử |
+| Giảng viên | TS. Nguyễn Mạnh Tuấn |
+| GitHub cá nhân | [huypham32261020149-work](https://github.com/huypham32261020149-work) |
+| Repository | [ecommerce-ui-improvement](https://github.com/huypham32261020149-work/ecommerce-ui-improvement) |
 
-Giao diện mẫu sử dụng tên ShopDemo, được xây dựng bằng HTML và CSS.
+## 2. Mục tiêu thực hiện ba bài Lab
 
-## 2. Website tham khảo
+Ba bài Lab giúp em chuyển từ việc hiểu cú pháp JavaScript sang xây dựng các tương tác thực tế trên website. Cụ thể, em thực hành viết và tổ chức mã JavaScript, thay đổi nội dung HTML qua DOM, xử lý các sự kiện người dùng, kiểm tra biểu mẫu và sử dụng jQuery để tạo hiệu ứng hoặc lấy dữ liệu.
 
-- Tên website: Tiki
-- URL: https://tiki.vn
-- Khu vực đã khảo sát:
-  - Trang chủ.
-  - Danh mục sản phẩm.
-  - Chi tiết sản phẩm.
-  - Tìm kiếm.
-  - Giỏ hàng.
-- Khu vực lựa chọn cải tiến: Giao diện thông báo và gợi ý khi tìm kiếm không có kết quả phù hợp.
+Các kỹ năng này có thể áp dụng vào website thương mại điện tử, chẳng hạn kiểm tra thông tin đăng ký, cập nhật nội dung sản phẩm, phản hồi thao tác thêm vào giỏ hàng và hiển thị dữ liệu mà không cần tải lại toàn bộ trang.
 
-## 3. Chức năng
+## 3. Cấu trúc thư mục
 
-- Hiển thị thông báo rõ ràng khi không tìm thấy sản phẩm phù hợp với từ khóa.
-- Hiển thị các mẹo tìm kiếm và từ khóa gợi ý để người dùng tiếp tục tìm kiếm.
-- Cung cấp liên kết tìm kiếm lại trên Tiki bằng từ khóa được chọn.
-- Hiển thị danh sách 8 sản phẩm minh họa có liên quan.
-- Hiển thị hình ảnh, tên, giá bán và nút thao tác trên từng thẻ sản phẩm.
-- Hiển thị lý do gợi ý cho từng sản phẩm.
-- Hỗ trợ giao diện responsive trên máy tính, máy tính bảng và điện thoại.
+```text
+JavaScript-Labs/
+├── index.html                  # Trang portfolio tổng hợp ba Lab
+├── README.md                   # Hướng dẫn và mô tả bài thực hành
+├── assets/
+│   └── profile.jpg             # Ảnh đại diện (cần bổ sung)
+├── Lab08/
+│   ├── index.html              # Mục lục Lab 08
+│   ├── lab08-walkthrough*.html
+│   ├── js/                     # Mã JavaScript Lab 08
+│   ├── css/                    # CSS Lab 08
+│   ├── flags/                  # Quốc kỳ trong Exercise 8.11
+│   └── images/
+├── Lab09/
+│   ├── index.html              # Mục lục Lab 09
+│   ├── lab09-walkthrough*.html
+│   ├── js/                     # Mã JavaScript Lab 09
+│   ├── css/                    # CSS Lab 09
+│   └── images/
+└── Lab10/
+    ├── index.html              # Mục lục Lab 10
+    ├── lab10-walkthrough*.html
+    ├── js/                     # Mã JavaScript và thư viện jQuery
+    ├── css/                    # CSS và hiệu ứng Lab 10
+    ├── images/
+    └── cities.json             # Chỉ có nếu dùng dữ liệu GET mẫu cục bộ
+```
 
-Lưu ý: Đây là trang giao diện mẫu. Các nút "Thêm vào giỏ" chưa có chức năng xử lý thực tế. Hình ảnh và thông tin sản phẩm chỉ mang tính minh họa.
+## 4. Nội dung từng Lab
 
-## 4. Công nghệ
+| Bài Lab | Nội dung chính | Kết quả thực hành tiêu biểu |
+|---|---|---|
+| **Lab 08 - JavaScript 1: Language Foundations** | Cú pháp JavaScript, biến, String, Date, Array, Function, Object và Browser Console | Tạo lịch 30 ngày, tính tiền đơn hàng, hiển thị danh sách quốc gia và quốc kỳ |
+| **Lab 09 - JavaScript 2: DOM and Events** | DOM Selectors, thêm/xóa phần tử, sự kiện click và chuột, biểu mẫu, Validation, Debugger | Thay đổi giao diện, ẩn/hiện nội dung, làm nổi bật trường nhập và kiểm tra dữ liệu đăng ký |
+| **Lab 10 - JavaScript 3: jQuery** | jQuery Selectors, Events, DOM, Fade/Slide, Animation, GET Request và jqXHR | Tạo hiệu ứng ảnh, xem trước ảnh khi rê chuột, animation và hiển thị dữ liệu JSON |
 
-- HTML5: Xây dựng cấu trúc nội dung và các thành phần giao diện.
-- CSS3: Thiết kế màu sắc, bố cục, nút bấm và hiệu ứng hiển thị.
-- CSS Flexbox và Grid: Sắp xếp các thành phần và danh sách sản phẩm.
-- Media Queries: Điều chỉnh bố cục phù hợp với các kích thước màn hình khác nhau.
+### Lab 08 - JavaScript 1: Language Foundations
 
-Dự án không sử dụng backend, cơ sở dữ liệu hoặc JavaScript.
+Lab này giúp em làm quen với việc nhúng JavaScript vào HTML, sử dụng các kiểu dữ liệu và xây dựng hàm để giải quyết bài toán đơn giản. Phần em vận dụng rõ nhất là dùng Array và vòng lặp để tạo lịch, cũng như Object để tổ chức thông tin đơn hàng.
 
-## 5. Cách chạy
+- Số Exercise theo tài liệu: **8.1-8.11**.
+- [Mở mục lục Lab 08](./Lab08/)
+- [Xem Exercise 8.7 - Arrays](./Lab08/lab08-walkthrough07.html)
 
-1. Tải và giải nén thư mục dự án.
-2. Đảm bảo các tệp `index.html`, `style.css` và thư mục `images/` được giữ đúng vị trí.
-3. Mở tệp `index.html` bằng trình duyệt Chrome, Edge hoặc Firefox.
-4. Quan sát giao diện và các chức năng minh họa.
-5. Nhấn `F12`, bật chế độ thiết bị di động để kiểm tra giao diện ở các kích thước khác nhau.
+### Lab 09 - JavaScript 2: DOM and Events
 
-Trang web có thể hiển thị giao diện khi không có Internet. Tuy nhiên, các liên kết tìm kiếm đến Tiki cần kết nối mạng.
+Lab này tập trung vào việc kết nối JavaScript với giao diện: chọn và cập nhật phần tử HTML, thêm hoặc xóa nội dung, xử lý các tương tác và kiểm tra dữ liệu người dùng nhập vào form. Đây là nền tảng để xây dựng biểu mẫu và các chức năng tương tác trên website TMĐT.
 
-## 6. Cải tiến đã thực hiện
+- Số Exercise theo tài liệu: **9.1-9.8**.
+- [Mở mục lục Lab 09](./Lab09/)
+- [Xem Exercise 9.8 - Form Validation](./Lab09/lab09-walkthrough08.html)
 
-Vấn đề ban đầu:
+### Lab 10 - JavaScript 3: jQuery
 
-Khi không tìm thấy kết quả phù hợp, người dùng có thể gặp khó khăn trong việc lựa chọn từ khóa khác hoặc tiếp tục tìm kiếm. Việc hiển thị những sản phẩm gợi ý không liên quan cũng có thể gây nhầm lẫn.
+Lab này giúp em làm quen với thư viện jQuery để rút gọn thao tác DOM, đăng ký sự kiện, tạo hiệu ứng chuyển động và gửi GET Request. Qua các bài, em hiểu cách thay đổi giao diện dựa trên hành vi người dùng và xử lý kết quả trả về từ nguồn dữ liệu.
 
-Các cải tiến giao diện:
+- Số Exercise theo tài liệu: **10.1-10.10**.
+- [Mở mục lục Lab 10](./Lab10/)
+- [Xem Exercise 10.6 - jQuery Animation](./Lab10/lab10-walkthrough06.html)
 
-- Thiết kế thông báo không tìm thấy kết quả nổi bật, dễ đọc.
-- Bổ sung hướng dẫn tìm kiếm và các từ khóa gợi ý.
-- Tạo khu vực hiển thị sản phẩm liên quan, kèm lý do gợi ý.
-- Phân biệt rõ sản phẩm gợi ý với kết quả tìm kiếm thực tế.
-- Thiết kế bố cục responsive với 2 cột sản phẩm trên điện thoại, 3 cột trên máy tính bảng và 4 cột trên máy tính.
+## 5. Đường dẫn GitHub Pages
 
-Kiểm tra và điều chỉnh mã nguồn:
+Các đường dẫn dưới đây được xây dựng theo cấu trúc repository. **Chúng hoạt động sau khi toàn bộ file được push lên nhánh xuất bản và GitHub Pages triển khai thành công.**
 
-Qua quá trình rà soát phiên bản ban đầu, phát hiện các từ khóa gợi ý sử dụng `href="#"`, chưa dẫn đến trang tìm kiếm tương ứng.
+| Trang | Đường dẫn |
+|---|---|
+| **Portfolio tổng** | [JavaScript Learning Portfolio](https://huypham32261020149-work.github.io/ecommerce-ui-improvement/JavaScript-Labs/) |
+| **Lab 08** | [JavaScript 1: Language Foundations](https://huypham32261020149-work.github.io/ecommerce-ui-improvement/JavaScript-Labs/Lab08/) |
+| **Lab 09** | [JavaScript 2: DOM and Events](https://huypham32261020149-work.github.io/ecommerce-ui-improvement/JavaScript-Labs/Lab09/) |
+| **Lab 10** | [JavaScript 3: jQuery](https://huypham32261020149-work.github.io/ecommerce-ui-improvement/JavaScript-Labs/Lab10/) |
 
-Những điều chỉnh đã được thực hiện:
+## 6. Hướng dẫn truy cập và kiểm tra bài thực hành
 
-- Thay đổi thuộc tính `href` để liên kết đến trang tìm kiếm Tiki với từ khóa tương ứng.
-- Thay nút "Xóa bộ lọc" chưa hoạt động bằng liên kết "Tìm lại không lọc".
-- Bổ sung CSS cho trạng thái `:focus-visible`, giúp người dùng dễ nhận biết phần tử đang được chọn bằng bàn phím.
-- Điều chỉnh cách hiển thị liên kết dạng nút bằng thuộc tính `text-decoration: none`.
+1. Mở [trang portfolio trên GitHub Pages](https://huypham32261020149-work.github.io/ecommerce-ui-improvement/JavaScript-Labs/).
+2. Chọn **Lab 08**, **Lab 09** hoặc **Lab 10** tại khu vực danh sách bài Lab.
+3. Trong trang mục lục của Lab đã chọn, nhấp vào Exercise muốn kiểm tra. Mỗi liên kết sẽ mở file HTML tương ứng.
+4. Thực hiện tương tác theo nội dung bài: nhấn nút, rê chuột, nhập dữ liệu vào form hoặc xem kết quả JavaScript hiển thị.
+5. Với các bài về Console, Debugger hoặc GET Request, mở **Developer Tools (F12)** và kiểm tra các tab **Console**, **Sources** hoặc **Network**.
 
-Bản mẫu đã được kiểm tra bằng Chromium ở các kích thước 360px, 768px và 1280px. Kết quả cho thấy bố cục không bị tràn ngang và các hình ảnh minh họa hiển thị đầy đủ.
+**Xem mã nguồn:** Truy cập [repository GitHub](https://github.com/huypham32261020149-work/ecommerce-ui-improvement) → mở thư mục `JavaScript-Labs/` → chọn thư mục Lab và file `.html` hoặc `.js` cần xem.
 
-## 7. Hỗ trợ từ AI
+### Một số lưu ý khi kiểm tra
 
-Trong quá trình thực hiện bài tập, tôi sử dụng ChatGPT để hỗ trợ:
+- **Lab 08:** Exercise 8.1 là thao tác bật/tắt JavaScript trên trình duyệt, có thể đối chiếu bằng ảnh trong báo cáo. Các Exercise 8.2-8.5 dùng chung `lab08-walkthrough02.html` qua các giai đoạn chỉnh sửa.
+- **Lab 09:** Exercise 9.5-9.6 dùng chung `lab09-walkthrough05.html`. Các bước liên quan breakpoint và Console cần thao tác trong Developer Tools.
+- **Lab 10:** Exercise 10.1-10.2 dùng chung `lab10-walkthrough01.html`. Để chạy trên GitHub Pages qua HTTPS, thư viện jQuery cần được tải bằng HTTPS hoặc file cục bộ.
+---
 
-- Phân tích giao diện và các chức năng của website Tiki.
-- Đề xuất phương án cải tiến khu vực tìm kiếm không có kết quả.
-- Hỗ trợ xây dựng mã nguồn HTML5 và CSS3.
-- Giải thích cấu trúc mã nguồn và cách tổ chức giao diện responsive.
-- Hỗ trợ kiểm tra bố cục, phát hiện hạn chế và đề xuất chỉnh sửa mã nguồn.
-
-Kiểm tra và điều chỉnh:
-
-- Đối chiếu các nhận xét của AI với những thông tin đã khảo sát trên website.
-- Kiểm tra cách hiển thị giao diện ở các kích thước màn hình khác nhau.
-- Rà soát và điều chỉnh các liên kết tìm kiếm chưa hoạt động trong mã nguồn ban đầu.
-- Phân biệt các chức năng đã hoạt động với những thành phần chỉ mang tính minh họa.
+**Người thực hiện:** Phạm Quang Huy - **MSSV:** 32261020149  
+**Học phần:** Phát triển ứng dụng Thương mại điện tử

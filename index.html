@@ -1,206 +1,136 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6KFXB7NFF6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-6KFXB7NFF6');
-</script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Không tìm thấy kết quả cho “súng nước” | ShopDemo</title>
-  <meta name="description" content="Trang mẫu cải tiến giao diện khi tìm kiếm không có kết quả: thông báo rõ ràng, gợi ý từ khóa và sản phẩm liên quan.">
-  <link rel="stylesheet" href="style.css">
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>JavaScript Learning Portfolio | Pham Quang Huy</title>
+<meta content="#102d42" name="theme-color"/><meta content="JavaScript Learning Portfolio - Lab 08 Language Foundations, Lab 09 DOM and Events, Lab 10 jQuery." name="description"/><style>
+:root {
+  --page: #f5f7f8;
+  --text: #17283a;
+  --muted: #607185;
+  --dark: #11283b;
+  --dark-2: #183e4b;
+  --line: #e0e8ed;
+  --card: #ffffff;
+  --mint: #68e0c3;
+  --teal: #007c79;
+  --mint-soft: #e5f6f1;
+  --shadow: 0 16px 55px rgba(24,47,67,.06);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+body { margin: 0; background: var(--page); color: var(--text); font: 16px/1.7 system-ui,-apple-system,"Segoe UI",Arial,sans-serif; }
+a { color: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid #13bfa4; outline-offset: 4px; border-radius: 4px; }
+.container { width: min(1136px,calc(100% - 48px)); margin-inline: auto; }
+.topbar { position: sticky; top: 0; z-index: 20; background: rgba(16,38,56,.96); backdrop-filter: blur(14px); color: #f6ffff; border-bottom: 1px solid rgba(255,255,255,.13); }
+.topbar .inner { display:flex; gap:24px; align-items:center; justify-content:space-between; min-height:72px; }
+.wordmark { display: inline-flex; align-items:center; gap:12px; text-decoration:none; font-size:.92rem; font-weight:850; letter-spacing:.11em; white-space:nowrap; }
+.wordmark::before { content:'JS'; display:grid; place-items:center; width:37px; height:37px; border-radius:10px; background:var(--mint); color:var(--dark); font-size:.84rem; letter-spacing:-.05em; font-weight:900; }
+nav { display:flex; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:22px; }
+nav a { color:#d3e2e8; font-size:.89rem; font-weight:640; text-decoration:none; transition:color .18s; }
+nav a:hover { color:var(--mint); }
+nav a:last-child { padding:8px 13px; border:1px solid rgba(255,255,255,.34); border-radius:9px; color:#fff; }
+main { padding: 40px 0 76px; }
+.hero { position:relative; isolation:isolate; overflow:hidden; display:grid; grid-template-columns:160px minmax(0,1fr); gap:36px; align-items:center; padding:52px clamp(28px,5.8vw,74px); border-radius:26px; color:#fff; background:linear-gradient(115deg,#102b45 4%,#133e4e 62%,#126b67 100%); box-shadow:0 25px 55px rgba(15,42,57,.16); }
+.hero::before { content:''; position:absolute; z-index:-1; width:440px; height:440px; right:-145px; top:-240px; border:1px solid rgba(108,235,200,.35); border-radius:50%; box-shadow:0 0 0 64px rgba(105,224,196,.065),0 0 0 130px rgba(105,224,196,.035); }
+.hero::after { content:'{  JS  }'; position:absolute; z-index:-1; right:5%; bottom:-27px; font-size:7.7rem; letter-spacing:-.08em; font-weight:900; color:rgba(255,255,255,.055); transform:rotate(-9deg); }
+.avatar { width:152px; height:152px; position:relative; flex:0 0 152px; display:grid; place-items:center; border:5px solid rgba(255,255,255,.6); outline:8px solid rgba(108,224,195,.15); border-radius:25px; background:linear-gradient(145deg,#effcf4,#99dfd5); color:#0d4850; font-size:3.6rem; line-height:1; letter-spacing:-.08em; font-weight:900; overflow:hidden; box-shadow:0 18px 30px rgba(0,0,0,.13); }
+.avatar img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.hero .eyebrow { margin:0 0 10px; color:#a6f1d8; font-size:.77rem; font-weight:800; text-transform:uppercase; letter-spacing:.14em; }
+.hero h1 { margin:0 0 12px; font-size:clamp(2.15rem,4.7vw,3.7rem); line-height:1.11; letter-spacing:-.05em; }
+.hero p { margin:3px 0; color:#d6e9ea; }
+.hero p strong { color:#fff; }
+.hero .hero-copy { max-width:670px; }
+.hero-actions { display:flex; flex-wrap:wrap; gap:11px; margin-top:22px; }
+.hero-actions a { display:inline-flex; min-height:42px; align-items:center; padding:10px 17px; border-radius:10px; font-weight:750; text-decoration:none; font-size:.9rem; }
+.hero-actions .primary-action { background:var(--mint); color:#113647; }
+.hero-actions .secondary-action { color:#fff; border:1px solid rgba(255,255,255,.4); background:rgba(255,255,255,.06); }
+.hero-actions a:hover { transform:translateY(-2px); transition:transform .15s; }
+.section { margin-top:54px; }
+.section>h2 { display:flex; gap:11px; align-items:center; margin:0 0 19px; color:#152b3e; font-size:clamp(1.45rem,2.6vw,1.95rem); line-height:1.28; letter-spacing:-.027em; }
+.section>h2::before { content:''; display:block; flex:0 0 5px; height:27px; border-radius:7px; background:var(--teal); }
+.section>p { max-width:950px; color:#4e6172; font-size:1.025rem; line-height:1.85; margin:0; }
+.section#about { margin-top:43px; padding:28px 34px; background:#fff; border:1px solid var(--line); border-radius:20px; box-shadow:var(--shadow); }
+.section#about h2 { margin-bottom:12px; }
+.cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:19px; }
+.card { position:relative; min-height:210px; padding:25px; background:var(--card); border:1px solid var(--line); border-radius:19px; box-shadow:var(--shadow); }
+a.card { display:flex; flex-direction:column; text-decoration:none; transition:transform .18s,box-shadow .18s,border-color .18s; }
+a.card:hover { transform:translateY(-5px); border-color:#64c6bc; box-shadow:0 23px 42px rgba(20,66,72,.13); }
+a.card:focus-visible { outline:3px solid #17bd9e; }
+.card .num { display:inline-flex; align-self:flex-start; color:#066f71; font-size:.75rem; font-weight:850; letter-spacing:.1em; text-transform:uppercase; }
+.card h3 { margin:11px 0; font-size:1.23rem; line-height:1.34; letter-spacing:-.025em; }
+.card p { margin:0; color:var(--muted); font-size:.92rem; line-height:1.72; }
+.card .go { display:inline-flex; margin-top:auto; padding-top:24px; color:#057e78; font-size:.9rem; font-weight:800; }
+#labs .card:nth-child(2) { background:linear-gradient(140deg,#f2fcfa,#fff 68%); }
+#labs .card:nth-child(3) { background:linear-gradient(140deg,#eef5fc,#fff 68%); }
+#learning .card { min-height:245px; }
+#learning .card:before { content:'0' counter(skill); counter-increment:skill; display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; margin-bottom:10px; border-radius:10px; background:var(--mint-soft); color:#0b796e; font-weight:900; font-size:.95rem; }
+#learning .cards { counter-reset:skill; }
+#learning .card .num { color:#6e8391; }
+.kpi { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:20px; }
+.kpi div { display:flex; align-items:center; gap:13px; padding:17px 22px; background:#e8f3f0; border:1px solid #d6eae6; border-radius:15px; color:#416271; font-size:.92rem; font-weight:650; }
+.kpi strong { color:#067971; font-size:1.8rem; line-height:1; letter-spacing:-.05em; }
+.text-card { border-radius:20px; padding:31px 34px; border:1px solid var(--line); background:#fff; box-shadow:var(--shadow); }
+.text-card p { margin:0; color:#334a5d; line-height:1.95; font-size:1.02rem; }
+.reflection-note { margin-top:11px!important; color:var(--muted)!important; font-size:.83rem!important; }
+.practice-bar { margin-top:25px; padding:19px 22px; border:1px dashed #b4d7d0; border-radius:15px; background:#edf8f4; }
+.practice-bar strong { display:block; color:#126f65; margin-bottom:9px; font-size:.94rem; }
+.practice-tags { display:flex; flex-wrap:wrap; gap:9px; }
+.practice-tags span { padding:6px 11px; background:#fff; border:1px solid #cfe6df; border-radius:999px; color:#3c5965; font-size:.83rem; font-weight:650; }
+footer { border-top:1px solid var(--line); background:#fff; padding:26px 0; color:#667b88; font-size:.86rem; }
+footer .container { display:flex; justify-content:space-between; gap:15px; flex-wrap:wrap; }
+footer a { color:#0c7973; font-weight:750; text-decoration:none; }
+@media(max-width:900px) { .cards { grid-template-columns:1fr 1fr; } .cards .card:last-child:nth-child(odd) { grid-column:1/-1; } #learning .card { min-height:200px; } .hero { grid-template-columns:122px 1fr; gap:30px; } .avatar { width:120px; height:120px; font-size:2.8rem; } }
+@media(max-width:640px) { .container{width:min(100% - 30px,1136px);} .topbar .inner{gap:12px; padding-block:13px; flex-wrap:wrap;} nav{width:100%; justify-content:space-between; gap:8px; } nav a { font-size:.77rem; } nav a:last-child { padding:5px 9px; } main{padding:22px 0 46px;} .hero{grid-template-columns:1fr; gap:24px; padding:31px 22px; border-radius:20px;} .hero h1{font-size:2.25rem;} .avatar{width:112px;height:112px;} .hero::after{font-size:5rem;} .section{margin-top:38px;} .section#about{padding:23px 20px;margin-top:24px;} .cards{grid-template-columns:1fr;gap:13px;} .cards .card:last-child:nth-child(odd){grid-column:auto;} .card{min-height:unset;padding:22px;} #learning .card{min-height:unset;} .kpi{grid-template-columns:1fr; gap:9px;} .kpi div{padding:14px 18px;} .text-card{padding:23px 21px;} .section>p{font-size:.98rem;} .practice-bar{padding:16px;} }
+@media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto;} *,*::before,*::after{transition:none!important;animation:none!important;} }
+</style></head>
 <body>
-  <a class="skip-link" href="#noi-dung-chinh">Bỏ qua, đến nội dung chính</a>
-
-  <!-- ===== Đầu trang: logo + ô tìm kiếm ===== -->
-  <header class="site-header">
-    <div class="container site-header__inner">
-      <a class="brand" href="#" aria-label="ShopDemo - Trang chủ">Shop<span>Demo</span></a>
-      <form class="search" role="search" action="https://tiki.vn/search" method="get">
-        <label class="visually-hidden" for="q">Tìm kiếm sản phẩm</label>
-        <input class="search__input" id="q" name="q" type="search" value="súng nước" autocomplete="off">
-        <button class="search__submit" type="submit">Tìm kiếm</button>
-      </form>
-    </div>
-  </header>
-
-  <main class="container" id="noi-dung-chinh">
-
-    <nav class="breadcrumb" aria-label="Đường dẫn">
-      <ol>
-        <li><a href="#">Trang chủ</a></li>
-        <li aria-current="page">Kết quả tìm kiếm “súng nước”</li>
-      </ol>
-    </nav>
-
-    <!-- ===== Khối A + B: Thông báo và cách khắc phục ===== -->
-    <section class="empty-state" aria-labelledby="empty-title">
-      <svg class="empty-state__icon" viewBox="0 0 64 64" width="64" height="64" aria-hidden="true" focusable="false">
-        <circle cx="28" cy="28" r="16" fill="none" stroke="currentColor" stroke-width="5"/>
-        <path d="M40 40 L56 56" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
-        <path d="M22 22 L34 34 M34 22 L22 34" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-      </svg>
-
-      <div class="empty-state__content" role="status">
-        <h1 class="empty-state__title" id="empty-title">Không tìm thấy kết quả cho “súng nước”</h1>
-        <p class="empty-state__text">Có thể từ khóa chưa khớp với sản phẩm nào, hoặc bộ lọc bên dưới đang giới hạn kết quả.</p>
-
-        <div class="applied-filters">
-          <span class="applied-filters__label">Đang lọc:</span>
-          <ul class="applied-filters__list">
-            <li class="tag">Độ tuổi: 3 - 5 tuổi</li>
-            <li class="tag">Màu sắc: Hồng</li>
-          </ul>
-          <a class="btn btn--primary" href="https://tiki.vn/search?q=s%C3%BAng%20n%C6%B0%E1%BB%9Bc">Tìm lại không lọc</a>
-        </div>
-
-        <h2 class="tips__title">Thử cách sau</h2>
-        <ul class="tips">
-          <li>Kiểm tra lại chính tả từ khóa.</li>
-          <li>Dùng từ khóa ngắn hoặc tổng quát hơn.</li>
-          <li>Chọn một từ khóa gợi ý bên dưới.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ===== Khối C: Gợi ý từ khóa ===== -->
-    <section class="section" aria-labelledby="keywords-title">
-      <h2 class="section__title" id="keywords-title">Thử tìm với từ khóa khác trên Tiki</h2>
-      <ul class="chips">
-          <li><a class="chip" href="https://tiki.vn/search?q=s%C3%BAng%20n%C6%B0%E1%BB%9Bc%20%C4%91%E1%BB%93%20ch%C6%A1i">súng nước đồ chơi</a></li>
-          <li><a class="chip" href="https://tiki.vn/search?q=s%C3%BAng%20b%E1%BA%AFn%20bong%20b%C3%B3ng">súng bắn bong bóng</a></li>
-          <li><a class="chip" href="https://tiki.vn/search?q=%C4%91%E1%BB%93%20ch%C6%A1i%20m%C3%B9a%20h%C3%A8">đồ chơi mùa hè</a></li>
-          <li><a class="chip" href="https://tiki.vn/search?q=%C4%91%E1%BB%93%20ch%C6%A1i%20b%E1%BB%83%20b%C6%A1i">đồ chơi bể bơi</a></li>
-          <li><a class="chip" href="https://tiki.vn/search?q=b%C3%B3ng%20n%C6%B0%E1%BB%9Bc">bóng nước</a></li>
-          <li><a class="chip" href="https://tiki.vn/search?q=%C4%91%E1%BB%93%20ch%C6%A1i%20ngo%C3%A0i%20tr%E1%BB%9Di">đồ chơi ngoài trời</a></li>
-      </ul>
-    </section>
-
-    <!-- ===== Khối D: Sản phẩm liên quan ===== -->
-    <section class="section" aria-labelledby="suggested-title">
-      <h2 class="section__title" id="suggested-title">Có thể bạn quan tâm</h2>
-      <p class="section__note">Đây là sản phẩm gợi ý minh họa, không phải kết quả cho “súng nước”. Nút “Thêm vào giỏ” chưa có chức năng xử lý.</p>
-      <ul class="product-grid">
-          <li>
-            <article class="product-card">
-              <figure class="product-card__media">
-                <img src="images/sung-nuoc.svg" alt="Hình minh họa súng nước màu xanh" width="400" height="400" loading="lazy">
-              </figure>
-              <div class="product-card__body">
-                <p class="product-card__reason">Gần với “súng nước”</p>
-                <h3 class="product-card__name">Súng nước đồ chơi bình lớn bắn xa 8 m</h3>
-                <p class="product-card__price"><span class="visually-hidden">Giá </span>129.000 ₫</p>
-                <button class="btn btn--primary btn--block" type="button">Thêm vào giỏ</button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="product-card">
-              <figure class="product-card__media">
-                <img src="images/sung-bong-bong.svg" alt="Hình minh họa súng bắn bong bóng màu hồng" width="400" height="400" loading="lazy">
-              </figure>
-              <div class="product-card__body">
-                <p class="product-card__reason">Cùng danh mục Đồ chơi ngoài trời</p>
-                <h3 class="product-card__name">Súng bắn bong bóng tự động có đèn</h3>
-                <p class="product-card__price"><span class="visually-hidden">Giá </span>99.000 ₫</p>
-                <button class="btn btn--primary btn--block" type="button">Thêm vào giỏ</button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="product-card">
-              <figure class="product-card__media">
-                <img src="images/bong-nuoc.svg" alt="Hình minh họa các quả bóng nước nhiều màu" width="400" height="400" loading="lazy">
-              </figure>
-              <div class="product-card__body">
-                <p class="product-card__reason">Thường mua cùng súng nước</p>
-                <h3 class="product-card__name">Bóng nước tự buộc, bộ 111 quả nhiều màu</h3>
-                <p class="product-card__price"><span class="visually-hidden">Giá </span>45.000 ₫</p>
-                <button class="btn btn--primary btn--block" type="button">Thêm vào giỏ</button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="product-card">
-              <figure class="product-card__media">
-                <img src="images/be-boi.svg" alt="Hình minh họa bể bơi phao màu vàng" width="400" height="400" loading="lazy">
-              </figure>
-              <div class="product-card__body">
-                <p class="product-card__reason">Liên quan: đồ chơi mùa hè</p>
-                <h3 class="product-card__name">Bể bơi phao gia đình 2 m cho bé</h3>
-                <p class="product-card__price"><span class="visually-hidden">Giá </span>289.000 ₫</p>
-                <button class="btn btn--primary btn--block" type="button">Thêm vào giỏ</button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="product-card">
-              <figure class="product-card__media">
-                <img src="images/do-choi-cat.svg" alt="Hình minh họa xô và xẻng chơi cát" width="400" height="400" loading="lazy">
-              </figure>
-              <div class="product-card__body">
-                <p class="product-card__reason">Cùng danh mục Đồ chơi ngoài trời</p>
-                <h3 class="product-card__name">Bộ xô xẻng chơi cát bãi biển 12 chi tiết</h3>
-                <p class="product-card__price"><span class="visually-hidden">Giá </span>79.000 ₫</p>
-                <button class="btn btn--primary btn--block" type="button">Thêm vào giỏ</button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="product-card">
-              <figure class="product-card__media">
-                <img src="images/ao-phao.svg" alt="Hình minh họa áo phao màu đỏ" width="400" height="400" loading="lazy">
-              </figure>
-              <div class="product-card__body">
-                <p class="product-card__reason">Liên quan: đồ bơi cho bé</p>
-                <h3 class="product-card__name">Áo phao bơi trẻ em có khóa an toàn</h3>
-                <p class="product-card__price"><span class="visually-hidden">Giá </span>159.000 ₫</p>
-                <button class="btn btn--primary btn--block" type="button">Thêm vào giỏ</button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="product-card">
-              <figure class="product-card__media">
-                <img src="images/kinh-boi.svg" alt="Hình minh họa kính bơi màu xanh" width="400" height="400" loading="lazy">
-              </figure>
-              <div class="product-card__body">
-                <p class="product-card__reason">Liên quan: đồ bơi cho bé</p>
-                <h3 class="product-card__name">Kính bơi trẻ em chống đọng sương</h3>
-                <p class="product-card__price"><span class="visually-hidden">Giá </span>65.000 ₫</p>
-                <button class="btn btn--primary btn--block" type="button">Thêm vào giỏ</button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="product-card">
-              <figure class="product-card__media">
-                <img src="images/phao-vit.svg" alt="Hình minh họa phao bơi hình vịt" width="400" height="400" loading="lazy">
-              </figure>
-              <div class="product-card__body">
-                <p class="product-card__reason">Liên quan: đồ chơi mùa hè</p>
-                <h3 class="product-card__name">Phao bơi tròn hình vịt vàng cho bé</h3>
-                <p class="product-card__price"><span class="visually-hidden">Giá </span>119.000 ₫</p>
-                <button class="btn btn--primary btn--block" type="button">Thêm vào giỏ</button>
-              </div>
-            </article>
-          </li>
-      </ul>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>Trang mẫu phục vụ bài tập phát triển giao diện thương mại điện tử. Sản phẩm, giá và hình ảnh chỉ mang tính minh họa.</p>
-    </div>
-  </footer>
+<header class="topbar"><div class="container inner">
+<a class="wordmark" href="./">JAVASCRIPT LABS</a>
+<nav aria-label="Điều hướng"><a href="#about">Giới thiệu</a><a href="#labs">03 Labs</a><a href="#learning">Kiến thức</a><a href="#reflection">Tự đánh giá</a><a aria-label="GitHub profile - Pham Quang Huy" href="https://github.com/huypham32261020149-work" rel="noopener noreferrer" target="_blank">GitHub</a></nav>
+</div></header>
+<main class="container">
+<section class="hero" id="home">
+<div aria-label="Ảnh đại diện" class="avatar"><span aria-hidden="true">PH</span><img alt="Ảnh đại diện Phạm Quang Huy" onerror="this.remove()" src="assets/profile.jpg"/></div>
+<div class="hero-copy">
+<p class="eyebrow">Học phần Phát triển ứng dụng Thương mại điện tử · JavaScript</p>
+<h1>Phạm Quang Huy</h1>
+<p><strong>MSSV:</strong> 32261020149</p>
+<p><strong>Lớp học phần:</strong> [26C1INF50902701]</p>
+<p>Portfolio tổng hợp kết quả thực hành Lab 08, Lab 09 và Lab 10.</p>
+<p><strong>GitHub: </strong><a href="https://github.com/huypham32261020149-work/ecommerce-ui-improvement/" rel="noopener noreferrer" style="color:#a6f1d8;text-underline-offset:3px;" target="_blank">github.com/huypham32261020149-work</a></p><div class="hero-actions"><a class="primary-action" href="#labs">Xem 3 Lab</a><a class="secondary-action" href="https://github.com/huypham32261020149-work/ecommerce-ui-improvement" rel="noopener noreferrer" target="_blank">Source on GitHub</a></div></div>
+</section>
+<section class="section" id="about">
+<h2>Giới thiệu bài thực hành</h2>
+<p>Ba Lab giúp em đi từ những kiến thức JavaScript nền tảng đến thao tác với DOM, xử lý sự kiện và sử dụng jQuery để phát triển các tương tác trên website. Mỗi Lab có trang mục lục riêng để truy cập trực tiếp các bài thực hành và kiểm tra kết quả trên trình duyệt.</p>
+</section>
+<section class="section" id="labs">
+<h2>Khám phá 3 bài Lab</h2>
+<div class="cards">
+<a class="card" href="Lab08/"><span class="num">LAB 08 · 11 EXERCISES</span><h3>JavaScript 1: Language Foundations</h3><p>Biến, hàm, String, Date, Array, Object và Browser Console.</p><span class="go">Mở Lab 08 →</span></a>
+<a class="card" href="Lab09/"><span class="num">LAB 09 · 8 EXERCISES</span><h3>JavaScript 2: DOM and Events</h3><p>DOM Selectors, tạo và xóa phần tử, Events, Form Validation.</p><span class="go">Mở Lab 09 →</span></a>
+<a class="card" href="Lab10/"><span class="num">LAB 10 · 10 EXERCISES</span><h3>JavaScript 3: jQuery</h3><p>jQuery Selectors, Events, DOM, Animation và AJAX.</p><span class="go">Mở Lab 10 →</span></a>
+</div>
+<div class="kpi"><div><strong>03</strong>Bài Lab</div><div><strong>29</strong>Exercise</div><div><strong>01</strong>Trang portfolio</div></div>
+</section>
+<section class="section" id="learning">
+<h2>Những kiến thức đã học</h2>
+<div class="cards">
+<div class="card"><span class="num">Lab 08</span><h3>JavaScript căn bản</h3><p>Em thực hành tổ chức dữ liệu qua Array và Object, viết hàm và kiểm tra giá trị biến bằng Console.</p></div>
+<div class="card"><span class="num">Lab 09</span><h3>DOM và tương tác</h3><p>Em học cách truy xuất phần tử, cập nhật HTML, lắng nghe các sự kiện và kiểm tra ô nhập liệu.</p></div>
+<div class="card"><span class="num">Lab 10</span><h3>jQuery và AJAX</h3><p>Em sử dụng selector và animation của jQuery, xử lý GET Request cùng các trạng thái thành công hoặc lỗi.</p></div>
+</div>
+<div class="practice-bar"><strong>Ứng dụng cho website TMĐT</strong><div class="practice-tags"><span>Registration form validation</span><span>Product content updates</span><span>Cart interactions</span><span>Image preview</span><span>GET requests &amp; loading states</span></div></div></section>
+<section class="section" id="reflection">
+<h2>Tự đánh giá quá trình học tập</h2>
+<div class="text-card">
+<p>Qua ba bài Lab, em hiểu rõ hơn cách JavaScript tạo ra những tương tác mà HTML và CSS không thể tự xử lý. Lab 08 giúp em củng cố cách sử dụng biến, hàm, mảng và đối tượng. Sang Lab 09, em thấy việc thao tác DOM và kiểm tra biểu mẫu rất gần với những chức năng thường có trên website thương mại điện tử. Lab 10 giúp em làm quen với jQuery, các hiệu ứng chuyển động và cách lấy dữ liệu bằng GET Request. Phần em gặp khó khăn nhất là kiểm tra lỗi khi mã JavaScript chạy không đúng thời điểm hoặc request thất bại. Sau bài thực hành, em muốn tiếp tục cải thiện kỹ năng đọc Console và tổ chức mã rõ ràng hơn.</p>
+</div>
+</section>
+</main>
+<footer><div class="container">Phạm Quang Huy · JavaScript Labs · Học phần Phát triển ứng dụng TMĐT<a href="https://github.com/huypham32261020149-work" rel="noopener noreferrer" target="_blank">GitHub Profile</a></div></footer>
 </body>
 </html>
