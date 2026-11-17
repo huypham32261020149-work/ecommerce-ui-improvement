@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#112b42">
+<title>Lab 09 | DOM and Events - JavaScript Labs</title>
+<meta name="description" content="Exercise index for Lab09 - JavaScript Labs.">
+<style>
+:root{--bg:#f4f7f8;--ink:#162a3a;--muted:#586c7a;--border:#dae6e9;--dark:#112b42;--mint:#70e0c5;--teal:#087a75;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+a{color:inherit}:focus-visible{outline:3px solid #0caa94;outline-offset:4px}
+.wrap{width:min(1120px,calc(100% - 36px));margin:0 auto}
+.header{position:sticky;top:0;z-index:5;background:#102a3b;color:#e7f3f5;border-bottom:1px solid #365465}
+.header-inner{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{text-decoration:none;display:flex;align-items:center;gap:12px;font-size:.86rem;letter-spacing:.08em;font-weight:850}
+.logo span{width:38px;height:38px;border-radius:10px;background:var(--mint);color:#102e3e;display:grid;place-items:center;font-size:.89rem}
+.nav{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.nav a{font-size:.83rem;text-decoration:none;padding:8px 12px;border-radius:9px;color:#d1e6e8}
+.nav a:hover,.nav a[aria-current=page]{background:#24495c;color:#fff}
+main{padding:36px 0 75px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(115deg,#112e45,#134e54 75%,#117c73);padding:46px clamp(25px,5vw,60px);border-radius:23px;color:#fff;box-shadow:0 22px 50px #17384b19}
+.hero:after{content:'{ JS }';font-size:7rem;font-weight:900;position:absolute;right:-8px;bottom:-43px;opacity:.055;letter-spacing:-.09em;pointer-events:none}
+.eyebrow{font-size:.76rem;letter-spacing:.13em;font-weight:850;color:#a1f6e1;text-transform:uppercase;margin:0 0 10px}
+h1{font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.05em;line-height:1.2;margin:0 0 10px}
+.hero p{max-width:720px;color:#d1e8e8;margin:0 0 21px}.stats{display:flex;gap:9px;flex-wrap:wrap}
+.stats span{display:inline-block;font-size:.77rem;color:#e9fffa;background:#ffffff17;border:1px solid #ffffff43;padding:5px 10px;border-radius:999px}
+.breadcrumb{display:inline-flex;align-items:center;gap:8px;padding-bottom:20px;color:#547284;font-size:.85rem}.breadcrumb a{color:#087872;text-underline-offset:3px}
+.section-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:36px 0 15px}
+.section-bar h2{font-size:1.42rem;letter-spacing:-.025em;margin:0}.section-bar p{font-size:.82rem;margin:0;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{display:flex;flex-direction:column;gap:12px;min-height:226px;padding:22px;border:1px solid var(--border);background:var(--white);border-radius:16px;box-shadow:0 10px 26px #1b415108;transition:transform .17s,border-color .17s,box-shadow .17s}
+.card:has(a:hover){transform:translateY(-3px);border-color:#67bfaf;box-shadow:0 18px 33px #22536e15}
+.number{color:#08756b;letter-spacing:.07em;font-size:.75rem;font-weight:850}
+.card h3{font-size:1.06rem;line-height:1.3;margin:0}.card p{color:var(--muted);font-size:.88rem;line-height:1.65;margin:0}
+.tag{display:inline-block;align-self:flex-start;border-radius:6px;background:#e9f6f1;color:#186d65;font-size:.71rem;padding:4px 8px;font-weight:740}
+.actions{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:7px}
+.actions a{display:inline-block;background:#0a7775;color:#fff;padding:9px 14px;border-radius:8px;text-decoration:none;font-weight:740;font-size:.83rem}
+.actions a:hover{background:#075957}
+.actions .file{max-width:154px;overflow-wrap:anywhere;color:#69808b;font-size:.68rem;text-align:right}
+.card--info{background:#edf3f4;border-style:dashed}.card--info .number{color:#607b84}
+.card--info .actions span{font-size:.81rem;color:#607783;font-weight:700}
+.notice{background:#e9f6f2;border:1px solid #c8e6dd;color:#245e57;border-radius:13px;padding:18px 20px;font-size:.88rem;line-height:1.75;margin-top:24px}
+.notice strong{display:block;margin-bottom:4px}.tips{padding:19px 23px;background:#fff;border:1px solid var(--border);border-radius:13px;color:#476171;font-size:.9rem;margin-top:15px}
+.tips code{font-size:.87em;background:#eff4f5;padding:2px 5px;border-radius:4px}
+.footer{background:#fff;border-top:1px solid var(--border);padding:23px 0;color:#6e818b;font-size:.83rem}
+.footer .wrap{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.footer a{color:#087772;font-weight:760;text-decoration:none}
+@media(max-width:880px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.header-inner{padding:13px 0;flex-wrap:wrap}.nav{width:100%;gap:7px}.nav a{padding:7px 9px}.hero{padding:31px 24px}.hero:after{font-size:5rem}.cards{grid-template-columns:1fr}.card{min-height:unset}.section-bar{align-items:start;flex-direction:column;gap:1px}main{padding:22px 0 48px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="header"><div class="wrap header-inner">
+<a class="logo" href="../index.html"><span>JS</span>JAVASCRIPT LABS</a>
+<nav class="nav" aria-label="Lab navigation">
+<a href="../Lab08/" >Lab 08</a>
+<a href="../Lab09/" aria-current="page">Lab 09</a>
+<a href="../Lab10/" >Lab 10</a>
+<a href="../index.html">Portfolio</a>
+</nav>
+</div></header>
+<main class="wrap">
+<div class="breadcrumb"><a href="../index.html">Portfolio</a><span aria-hidden="true">/</span><span>Lab 09</span></div>
+<section class="hero" aria-labelledby="lab-title">
+<p class="eyebrow">JavaScript 2 &middot; Lab 09</p>
+<h1 id="lab-title">DOM and Events</h1>
+<p>Select, modify and inspect the DOM; respond to user events and validate forms.</p>
+<div class="stats"><span>DOM selection</span><span>Event listeners</span><span>DOM manipulation</span><span>Form validation</span></div>
+</section>
+<div class="section-bar"><h2>Exercise index</h2><p>8 exercises &middot; direct HTML links</p></div>
+<section class="cards" aria-label="Exercise list">
+<article class="card">
+<span class="number">EXERCISE 9.1</span>
+<h3>Basic DOM Selection</h3>
+<p>Find HTML elements and update their contents and styles.</p>
+
+<div class="actions"><a href="lab09-walkthrough01.html" aria-label="Open Exercise 9.1: Basic DOM Selection">Open exercise &rarr;</a><span class="file">lab09-walkthrough01.html</span></div>
+</article>
+<article class="card">
+<span class="number">EXERCISE 9.2</span>
+<h3>DOM Family Relations</h3>
+<p>Navigate child, parent and sibling nodes.</p>
+
+<div class="actions"><a href="lab09-walkthrough02.html" aria-label="Open Exercise 9.2: DOM Family Relations">Open exercise &rarr;</a><span class="file">lab09-walkthrough02.html</span></div>
+</article>
+<article class="card">
+<span class="number">EXERCISE 9.3</span>
+<h3>Modifying the DOM</h3>
+<p>Create, append and remove DOM elements.</p>
+
+<div class="actions"><a href="lab09-walkthrough03.html" aria-label="Open Exercise 9.3: Modifying the DOM">Open exercise &rarr;</a><span class="file">lab09-walkthrough03.html</span></div>
+</article>
+<article class="card">
+<span class="number">EXERCISE 9.4</span>
+<h3>Simple Event Handling</h3>
+<p>Use click, mouseover and mouseout events.</p>
+
+<div class="actions"><a href="lab09-walkthrough04.html" aria-label="Open Exercise 9.4: Simple Event Handling">Open exercise &rarr;</a><span class="file">lab09-walkthrough04.html</span></div>
+</article>
+<article class="card">
+<span class="number">EXERCISE 9.5</span>
+<h3>Responding to Load Events</h3>
+<p>Wait for page load before accessing DOM elements.</p>
+<span class="tag">Shared HTML: 9.5 - 9.6</span>
+<div class="actions"><a href="lab09-walkthrough05.html" aria-label="Open Exercise 9.5: Responding to Load Events">Open exercise &rarr;</a><span class="file">lab09-walkthrough05.html</span></div>
+</article>
+<article class="card">
+<span class="number">EXERCISE 9.6</span>
+<h3>Debugging Events</h3>
+<p>Use breakpoints and inspect event targets.</p>
+<span class="tag">Shared HTML: 9.5 - 9.6</span>
+<div class="actions"><a href="lab09-walkthrough05.html" aria-label="Open Exercise 9.6: Debugging Events">Open exercise &rarr;</a><span class="file">lab09-walkthrough05.html</span></div>
+</article>
+<article class="card">
+<span class="number">EXERCISE 9.7</span>
+<h3>Working with Forms</h3>
+<p>Use focus and blur to update form appearance.</p>
+
+<div class="actions"><a href="lab09-walkthrough07.html" aria-label="Open Exercise 9.7: Working with Forms">Open exercise &rarr;</a><span class="file">lab09-walkthrough07.html</span></div>
+</article>
+<article class="card">
+<span class="number">EXERCISE 9.8</span>
+<h3>Form Validation</h3>
+<p>Check empty fields and display validation feedback.</p>
+
+<div class="actions"><a href="lab09-walkthrough08.html" aria-label="Open Exercise 9.8: Form Validation">Open exercise &rarr;</a><span class="file">lab09-walkthrough08.html</span></div>
+</article>
+</section>
+<aside class="notice"><strong>About the shared files</strong>Exercises 9.5 and 9.6 build on the same file, lab09-walkthrough05.html. Some debugging steps require DevTools and are not visible in the page alone.</aside>
+<div class="tips">All links are relative to this folder. Keep the original <code>js/</code>, <code>css/</code> and image folders alongside the walkthrough HTML files when publishing to GitHub Pages. Some exercises require interaction or the browser Console.</div>
+</main>
+<footer class="footer"><div class="wrap"><span>Pham Quang Huy &middot; 32261020149 &middot; JavaScript Labs</span><a href="../index.html">Back to portfolio &rarr;</a></div></footer>
+</body></html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#112b42">
+<title>Lab 10 | jQuery - JavaScript Labs</title>
+<meta name="description" content="Exercise index for Lab10 - JavaScript Labs.">
+<style>
+:root{--bg:#f4f7f8;--ink:#162a3a;--muted:#586c7a;--border:#dae6e9;--dark:#112b42;--mint:#70e0c5;--teal:#087a75;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+a{color:inherit}:focus-visible{outline:3px solid #0caa94;outline-offset:4px}
+.wrap{width:min(1120px,calc(100% - 36px));margin:0 auto}
+.header{position:sticky;top:0;z-index:5;background:#102a3b;color:#e7f3f5;border-bottom:1px solid #365465}
+.header-inner{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{text-decoration:none;display:flex;align-items:center;gap:12px;font-size:.86rem;letter-spacing:.08em;font-weight:850}
+.logo span{width:38px;height:38px;border-radius:10px;background:var(--mint);color:#102e3e;display:grid;place-items:center;font-size:.89rem}
+.nav{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.nav a{font-size:.83rem;text-decoration:none;padding:8px 12px;border-radius:9px;color:#d1e6e8}
+.nav a:hover,.nav a[aria-current=page]{background:#24495c;color:#fff}
+main{padding:36px 0 75px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(115deg,#112e45,#134e54 75%,#117c73);padding:46px clamp(25px,5vw,60px);border-radius:23px;color:#fff;box-shadow:0 22px 50px #17384b19}
+.hero:after{content:'{ JS }';font-size:7rem;font-weight:900;position:absolute;right:-8px;bottom:-43px;opacity:.055;letter-spacing:-.09em;pointer-events:none}
+.eyebrow{font-size:.76rem;letter-spacing:.13em;font-weight:850;color:#a1f6e1;text-transform:uppercase;margin:0 0 10px}
+h1{font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.05em;line-height:1.2;margin:0 0 10px}
+.hero p{max-width:720px;color:#d1e8e8;margin:0 0 21px}.stats{display:flex;gap:9px;flex-wrap:wrap}
+.stats span{display:inline-block;font-size:.77rem;color:#e9fffa;background:#ffffff17;border:1px solid #ffffff43;padding:5px 10px;border-radius:999px}
+.breadcrumb{display:inline-flex;align-items:center;gap:8px;padding-bottom:20px;color:#547284;font-size:.85rem}.breadcrumb a{color:#087872;text-underline-offset:3px}
+.section-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:36px 0 15px}
+.section-bar h2{font-size:1.42rem;letter-spacing:-.025em;margin:0}.section-bar p{font-size:.82rem;margin:0;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{display:flex;flex-direction:column;gap:12px;min-height:226px;padding:22px;border:1px solid var(--border);background:var(--white);border-radius:16px;box-shadow:0 10px 26px #1b415108;transition:transform .17s,border-color .17s,box-shadow .17s}
+.card:has(a:hover){transform:translateY(-3px);border-color:#67bfaf;box-shadow:0 18px 33px #22536e15}
+.number{color:#08756b;letter-spacing:.07em;font-size:.75rem;font-weight:850}
+.card h3{font-size:1.06rem;line-height:1.3;margin:0}.card p{color:var(--muted);font-size:.88rem;line-height:1.65;margin:0}
+.tag{display:inline-block;align-self:flex-start;border-radius:6px;background:#e9f6f1;color:#186d65;font-size:.71rem;padding:4px 8px;font-weight:740}
+.actions{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:7px}
+.actions a{display:inline-block;background:#0a7775;color:#fff;padding:9px 14px;border-radius:8px;text-decoration:none;font-weight:740;font-size:.83rem}
+.actions a:hover{background:#075957}
+.actions .file{max-width:154px;overflow-wrap:anywhere;color:#69808b;font-size:.68rem;text-align:right}
+.card--info{background:#edf3f4;border-style:dashed}.card--info .number{color:#607b84}
+.card--info .actions span{font-size:.81rem;color:#607783;font-weight:700}
+.notice{background:#e9f6f2;border:1px solid #c8e6dd;color:#245e57;border-radius:13px;padding:18px 20px;font-size:.88rem;line-height:1.75;margin-top:24px}
+.notice strong{display:block;margin-bottom:4px}.tips{padding:19px 23px;background:#fff;border:1px solid var(--border);border-radius:13px;color:#476171;font-size:.9rem;margin-top:15px}
+.tips code{font-size:.87em;background:#eff4f5;padding:2px 5px;border-radius:4px}
+.footer{background:#fff;border-top:1px solid var(--border);padding:23px 0;color:#6e818b;font-size:.83rem}
+.footer .wrap{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.footer a{color:#087772;font-weight:760;text-decoration:none}
+@media(max-width:880px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.header-inner{padding:13px 0;flex-wrap:wrap}.nav{width:100%;gap:7px}.nav a{padding:7px 9px}.hero{padding:31px 24px}.hero:after{font-size:5rem}.cards{grid-template-columns:1fr}.card{min-height:unset}.section-bar{align-items:start;flex-direction:column;gap:1px}main{padding:22px 0 48px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="header"><div class="wrap header-inner">
+<a class="logo" href="../index.html"><span>JS</span>JAVASCRIPT LABS</a>
+<nav class="nav" aria-label="Lab navigation">
+<a href="../Lab08/" >Lab 08</a>
+<a href="../Lab09/" >Lab 09</a>
+<a href="../Lab10/" aria-current="page">Lab 10</a>
+<a href="../index.html">Portfolio</a>
+</nav>
+</div></header>
+<main class="wrap">
+<div class="breadcrumb"><a href="../index.html">Portfolio</a><span aria-hidden="true">/</span><span>Lab 10</span></div>
+<section class="hero" aria-labelledby="lab-title">
+<p class="eyebrow">JavaScript 3 &middot; Lab 10</p>
+<h1 id="lab-title">jQuery</h1>
+<p>Learn jQuery selectors, events, DOM insertion, animation and Ajax requests.</p>
+<div class="stats"><span>jQuery selectors</span><span>Event handling</span><span>Animations</span><span>GET &amp; jqXHR</span></div>
+</section>
+<div class="section-bar"><h2>Exercise index</h2><p>10 exercises &middot; direct HTML links</p></div>
+<section class="cards" aria-label="Exercise list">
+<article class="card">
+<span class="number">EXERCISE 10.1</span>
+<h3>Set Up jQuery</h3>
+<p>Load jQuery using a CDN and a local fallback.</p>
+<span class="tag">Shared HTML: 10.1 - 10.2</span>
+<div class="actions"><a href="lab10-walkthrough01.html" aria-label="Open Exercise 10.1: Set Up jQuery">Open exercise &rarr;</a><span class="file">lab10-walkthrough01.html</span></div>
+</article>
+<article class="card">
+<span class="number">EXERCISE 10.2</span>
+<h3>Basic Selectors</h3>
+<p>Select HTML elements and update values, content and classes.</p>
+<span class="tag">Shared HTML: 10.1 - 10.2</span>
+<div class="actions"><a href="lab10-walkthrough01.html" aria-label="Open Exercise 10.2: Basic Selectors">Open exercise &rarr;</a><span class="file">lab10-walkthrough01.html</span></div>
+</article>
+<article class="card">
+<span class="number">EXERCISE 10.3</span>
+<h3>Advanced Selectors</h3>
+<p>Use form and content-based selectors.</p>
+
+<div class="actions"><a href="lab10-walkthrough03.html" aria-label="Open Exercise 10.3: Advanced Selectors">Open exercise &rarr;</a><span class="file">lab10-walkthrough03.html</span></div>
+</article>
+<article class="card">
+<span class="number">EXERCISE 10.4</span>
+<h3>jQuery Listeners</h3>
+<p>Handle mouse and click events through jQuery.</p>
+
+<div class="actions"><a href="lab10-walkthrough04.html" aria-label="Open Exercise 10.4: jQuery Listeners">Open exercise &rarr;</a><span class="file">lab10-walkthrough04.html</span></div>
+</article>
+<article class="card">
+<span class="number">EXERCISE 10.5</span>
+<h3>Inserting DOM Elements</h3>
+<p>Insert images before, after and inside elements.</p>
+
+<div class="actions"><a href="lab10-walkthrough05.html" aria-label="Open Exercise 10.5: Inserting DOM Elements">Open exercise &rarr;</a><span class="file">lab10-walkthrough05.html</span></div>
+</article>
+<article class="card">
+<span class="number">EXERCISE 10.6</span>
+<h3>Simple jQuery Animation</h3>
+<p>Fade and slide an image in and out.</p>
+
+<div class="actions"><a href="lab10-walkthrough06.html" aria-label="Open Exercise 10.6: Simple jQuery Animation">Open exercise &rarr;</a><span class="file">lab10-walkthrough06.html</span></div>
+</article>
+<article class="card">
+<span class="number">EXERCISE 10.7</span>
+<h3>More jQuery Animation</h3>
+<p>Show an enlarged image preview on mouseover.</p>
+
+<div class="actions"><a href="lab10-walkthrough07.html" aria-label="Open Exercise 10.7: More jQuery Animation">Open exercise &rarr;</a><span class="file">lab10-walkthrough07.html</span></div>
+</article>
+<article class="card">
+<span class="number">EXERCISE 10.8</span>
+<h3>Complex Animations</h3>
+<p>Chain several position and opacity animations.</p>
+
+<div class="actions"><a href="lab10-walkthrough08.html" aria-label="Open Exercise 10.8: Complex Animations">Open exercise &rarr;</a><span class="file">lab10-walkthrough08.html</span></div>
+</article>
+<article class="card">
+<span class="number">EXERCISE 10.9</span>
+<h3>GET Requests</h3>
+<p>Load JSON and display a list of cities.</p>
+
+<div class="actions"><a href="lab10-walkthrough09.html" aria-label="Open Exercise 10.9: GET Requests">Open exercise &rarr;</a><span class="file">lab10-walkthrough09.html</span></div>
+</article>
+<article class="card">
+<span class="number">EXERCISE 10.10</span>
+<h3>jqXHR Handling</h3>
+<p>Handle request success, failure and loading state.</p>
+
+<div class="actions"><a href="lab10-walkthrough10.html" aria-label="Open Exercise 10.10: jqXHR Handling">Open exercise &rarr;</a><span class="file">lab10-walkthrough10.html</span></div>
+</article>
+</section>
+<aside class="notice"><strong>About the shared files</strong>Exercises 10.1 and 10.2 share lab10-walkthrough01.html. For 10.9 and 10.10, an outdated external API may fail on GitHub Pages; if you used a local cities.json fixture, upload it too and explain that it is test data.</aside>
+<div class="tips">All links are relative to this folder. Keep the original <code>js/</code>, <code>css/</code> and image folders alongside the walkthrough HTML files when publishing to GitHub Pages. Some exercises require interaction or the browser Console.</div>
+</main>
+<footer class="footer"><div class="wrap"><span>Pham Quang Huy &middot; 32261020149 &middot; JavaScript Labs</span><a href="../index.html">Back to portfolio &rarr;</a></div></footer>
+</body></html>
