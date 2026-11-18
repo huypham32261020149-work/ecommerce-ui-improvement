@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Web Design | Huy Phạm</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f2f6fc;
+            color: #293447;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 35px auto;
+            padding: 35px;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        header {
+            padding: 25px;
+            background: linear-gradient(120deg, #124a91, #2874cc);
+            color: white;
+            border-radius: 10px;
+        }
+
+        header h1 {
+            margin: 8px 0;
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 5px 0;
+        }
+
+        .tag {
+            font-size: 13px;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        h2 {
+            color: #14569b;
+            font-size: 21px;
+            margin-top: 30px;
+            border-bottom: 1px solid #dde6f0;
+            padding-bottom: 8px;
+        }
+
+        .info {
+            background: #f5f8fd;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .info p {
+            margin: 5px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .note {
+            background: #eef5ff;
+            border-left: 4px solid #2874cc;
+            padding: 15px 20px;
+            margin-top: 15px;
+            border-radius: 4px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #14569b;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background: #2874cc;
+        }
+
+        footer {
+            text-align: center;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            margin-top: 35px;
+            color: #657286;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #14569b;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                margin: 10px;
+                padding: 18px;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+
+        <header>
+            <div class="tag">MY WEB DEVELOPMENT JOURNEY</div>
+            <h1>Responsive Web Design</h1>
+            <p>
+                Bài thực hành HTML5 & CSS3
+            </p>
+            <p>
+                Học cách xây dựng website linh hoạt
+                trên nhiều thiết bị.
+            </p>
+        </header>
+
+        <section class="info">
+            <p><strong>Sinh viên:</strong> Huy Phạm</p>
+            <p><strong>MSSV:</strong> 32261020149</p>
+            <p>
+                <strong>Học phần:</strong>
+                Phát triển ứng dụng Thương mại điện tử
+            </p>
+            <p><strong>Ngày thực hành:</strong> 18/11/2026</p>
+        </section>
+
+        <section>
+            <h2>01. Hôm nay mình học được gì?</h2>
+
+            <p>
+                Trong buổi học hôm nay, mình được tìm hiểu
+                về Responsive Web Design - cách giúp
+                một website tự điều chỉnh giao diện
+                sao cho phù hợp với từng kích thước màn hình.
+            </p>
+
+            <p>
+                Những kiến thức chính mình đã thực hành:
+            </p>
+
+            <ul>
+                <li>
+                    <strong>CSS Float:</strong>
+                    Tạo bố cục gồm hai vùng LEFT và RIGHT.
+                </li>
+
+                <li>
+                    <strong>Media Queries:</strong>
+                    Điều chỉnh bố cục theo chiều rộng
+                    màn hình.
+                </li>
+
+                <li>
+                    <strong>Responsive Images:</strong>
+                    Sử dụng picture, source và img
+                    để thay đổi hình ảnh tương ứng.
+                </li>
+
+                <li>
+                    <strong>Display:</strong>
+                    Ẩn những thành phần không cần thiết
+                    trên một số kích thước màn hình.
+                </li>
+
+                <li>
+                    <strong>Print Media:</strong>
+                    Tùy chỉnh giao diện khi người dùng
+                    in trang web.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>02. Bài thực hành của mình</h2>
+
+            <p>
+                Để áp dụng những kiến thức trên,
+                mình xây dựng một trang web đơn giản
+                với hai vùng nội dung màu xanh và đỏ.
+            </p>
+
+            <p>
+                Trong đó, vùng LEFT hiển thị hình ảnh
+                logo UEH, UEH CTD và UEH BIT
+                tùy theo kích thước màn hình.
+            </p>
+
+            <ul>
+                <li>
+                    Trên 768px: LEFT chiếm 70%,
+                    RIGHT chiếm 30%.
+                </li>
+                <li>
+                    Từ 480px đến 768px:
+                    hai vùng đều có chiều rộng 100%.
+                </li>
+                <li>
+                    Từ 321px đến 479px:
+                    ẩn vùng RIGHT.
+                </li>
+                <li>
+                    Thay đổi logo tương ứng
+                    tại các mốc 600px và 800px.
+                </li>
+                <li>
+                    Khi in: chỉ hiển thị vùng RIGHT.
+                </li>
+            </ul>
+
+            <a href="./Bai1.html" class="button">
+                Xem bài thực hành →
+            </a>
+        </section>
+
+        <section>
+            <h2>03. Điều mình rút ra sau buổi học</h2>
+
+            <div class="note">
+                Qua bài thực hành, mình hiểu rằng
+                một website không chỉ cần hiển thị đẹp
+                trên máy tính mà còn phải phù hợp
+                với điện thoại và các thiết bị khác.
+
+                <p>
+                    Media Queries giúp mình kiểm soát
+                    bố cục ở từng kích thước, trong khi
+                    thẻ picture cho phép lựa chọn hình ảnh
+                    phù hợp mà không cần sử dụng JavaScript.
+                </p>
+
+                Đây là một kiến thức hữu ích để mình
+                tiếp tục phát triển giao diện website
+                thương mại điện tử trong những buổi học sau.
+            </div>
+        </section>
+
+        <footer>
+            <p>
+                Made by Huy Phạm | HTML5 & CSS3 Practice
+            </p>
+
+            <a href="https://github.com/huypham32261020149-work/ecommerce-ui-improvement/">
+                My GitHub Repository
+            </a>
+        </footer>
+
+    </main>
+</body>
+</html>

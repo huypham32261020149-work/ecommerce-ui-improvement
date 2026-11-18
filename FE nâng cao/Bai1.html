@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo responsive</title>
+
+    <style>
+        .left,
+        .right {
+            height: 400px;
+        }
+
+        .left {
+            background: blue;
+            float: left;
+            width: 70%;
+        }
+
+        .right {
+            background: red;
+            float: right;
+            width: 30%;
+        }
+
+        /* Responsive: màn hình nhỏ hơn hoặc bằng 768px */
+        @media only screen and (max-width: 768px) {
+            .left,
+            .right {
+                width: 100%;
+            }
+        }
+
+        /* Nếu chiều rộng của trình duyệt từ 320 đến 480px thì ẩn classs RIGHT */
+        @media only screen and (min-width: 321px) and (max-width: 479px) {
+            .right {
+                display: none;
+            }
+        }
+
+        /* Chế độ in: ẩn LEFT, RIGHT chiếm 100% */
+        @media only print {
+            .left {
+                display: none;
+            }
+
+            .right {
+                width: 100%;
+            }
+        }
+
+        /* Ảnh không vượt quá chiều rộng vùng chứa */
+        picture img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="left">
+            LEFT
+
+            <picture>
+    <source width="400"
+        media="(min-width: 800px)"
+        srcset="https://www.ueh.edu.vn/images/logo-header.png">
+
+    <source width="400"
+        media="(min-width: 600px)"
+        srcset="https://ctd.ueh.edu.vn/wp-content/uploads/2023/07/cropped-TV_trang_CTD.png">
+
+    <img alt="Logo UEH"
+        src="https://ueh.edu.vn/schools/college/images/logo/bit-header-logo.png"
+        width="400">
+</picture>
+        </div>
+
+        <div class="right">
+            RIGHT
+        </div>
+
+    </div>
+</body>
+</html>
