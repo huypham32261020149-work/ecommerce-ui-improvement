@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#14232b">
+  <meta name="description" content="CSS Field Notes của Phạm Quang Huy – hành trình thực hành 19 Exercise Lab 07: Advanced CSS Layout, responsive design, animation và Bootstrap.">
+  <title>CSS Field Notes — Phạm Quang Huy | Lab 07</title>
+  <style>
+    :root {
+      --ink: #14232b;
+      --ink-2: #233a43;
+      --paper: #f8f6f0;
+      --paper-2: #f0f0e7;
+      --card: #fffefb;
+      --green: #d6ef83;
+      --green-dark: #4a6331;
+      --rust: #dc855e;
+      --muted: #65717a;
+      --border: #e3e5df;
+      --shadow: 0 22px 60px rgba(18,38,40,.065);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: "Segoe UI", Inter, ui-sans-serif, system-ui, -apple-system, Arial, sans-serif; font-size: 16px; line-height: 1.65; }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid #a4cd34; outline-offset: 3px; }
+    button, input { font: inherit; }
+    ::selection { background: var(--green); color: var(--ink); }
+    .wrap { width: min(1160px, calc(100% - 56px)); margin-inline: auto; }
+    .skip { position: absolute; top: -100px; left: 12px; background: var(--green); color: var(--ink); padding: 10px 16px; z-index: 200; }
+    .skip:focus { top: 12px; }
+    .site-head { position: sticky; top: 0; z-index: 30; color: #f8fcf2; background: rgba(20,35,43,.97); backdrop-filter: blur(14px); border-bottom: 1px solid #35505b; }
+    .head-inner { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 26px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; white-space: nowrap; }
+    .brand-mark { display: grid; place-items: center; width: 39px; height: 39px; border: 1px solid #8a9d7b; background: var(--green); border-radius: 11px; color: var(--ink); font-weight: 900; letter-spacing: -.085em; font-size: 19px; }
+    .brand-copy { display: flex; flex-direction: column; line-height: 1.23; }
+    .brand-copy strong { font-size: 14px; letter-spacing: .025em; }
+    .brand-copy span { margin-top: 3px; font-size: 11px; letter-spacing: .13em; text-transform: uppercase; color: #a7b7b6; font-weight: 700; }
+    .nav { display: flex; align-items: center; gap: 24px; }
+    .nav a { color: #d8e5e1; text-decoration: none; font-size: 13px; font-weight: 700; transition: color .2s; }
+    .nav a:hover { color: var(--green); }
+    .nav a.nav-primary { border: 1px solid #667a7e; border-radius: 999px; padding: 9px 14px; color: #fff; }
+    .nav a.nav-primary:hover { border-color: var(--green); }
+    .hero { background: var(--ink); color: white; position: relative; isolation: isolate; overflow: hidden; }
+    .hero:before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 42px 42px; mask-image: linear-gradient(90deg,transparent,#000); }
+    .hero:after { content: ""; position: absolute; width: 700px; height: 700px; right: -400px; top: -350px; border: 1px solid rgba(214,239,131,.23); border-radius: 50%; box-shadow: 0 0 0 100px rgba(214,239,131,.025), 0 0 0 190px rgba(214,239,131,.018); z-index: -1; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.16fr) minmax(320px, .84fr); gap: 68px; align-items: center; padding-top: 76px; padding-bottom: 76px; }
+    .eyebrow { margin: 0 0 20px; display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 900; letter-spacing: .19em; text-transform: uppercase; }
+    .hero .eyebrow { color: var(--green); }
+    .eyebrow:before { content: ""; width: 24px; height: 2px; background: currentColor; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 720px; margin-bottom: 25px; font-weight: 830; line-height: 1.065; letter-spacing: -.067em; font-size: clamp(44px, 5.25vw, 77px); }
+    h1 em { font-style: normal; color: var(--green); }
+    .hero-lead { max-width: 600px; color: #c6d4d3; line-height: 1.86; font-size: clamp(15px,1.3vw,17px); margin-bottom: 26px; }
+    .hero-lead strong { color: white; }
+    .hero-stats { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+    .hero-stats span { border: 1px solid rgba(219,238,223,.22); background: rgba(255,255,255,.055); border-radius: 100px; padding: 7px 12px; color: #dbe6da; font-size: 12px; font-weight: 720; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 14px; padding: 13px 19px; min-height: 48px; border-radius: 9px; font-size: 14px; font-weight: 850; text-decoration: none; transition: transform .2s, background .2s, border-color .2s; }
+    .button:hover { transform: translateY(-2px); }
+    .button-main { background: var(--green); color: var(--ink); }
+    .button-main:hover { background: #e6f6b7; }
+    .button-ghost { border: 1px solid #577078; color: white; }
+    .button-ghost:hover { border-color: var(--green); }
+    .identity { background: #f5f5ee; color: var(--ink); border-radius: 18px; padding: 27px 28px 25px; box-shadow: 16px 16px 0 rgba(214,239,131,.16); transform: rotate(1deg); }
+    .identity-top { display:flex; justify-content:space-between; align-items:center; gap: 10px; padding-bottom: 15px; border-bottom: 1px solid #d4dacd; text-transform: uppercase; letter-spacing: .18em; font-size: 10px; font-weight: 900; color: #586b60; }
+    .identity-top b { font-size: 11px; color: var(--ink); letter-spacing: 0; }
+    .identity-main { display: grid; grid-template-columns: 108px minmax(0,1fr); align-items: center; gap: 20px; padding: 24px 0 18px; }
+    .avatar { position: relative; display: grid; place-items: center; width: 108px; height: 121px; border: 4px solid #fff; border-radius: 12px; overflow: hidden; background: linear-gradient(140deg, #b4d4bc, #e6edc6 60%, #c3d3af); box-shadow: 0 4px 15px rgba(15,41,28,.09); }
+    .avatar-initials { font-size: 39px; font-weight: 950; letter-spacing: -.1em; color: #2d5947; }
+    .avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .avatar img[hidden] { display: none; }
+    .identity h2 { font-size: 25px; line-height: 1.17; letter-spacing: -.05em; margin-bottom: 8px; }
+    .identity .role { color: #667975; font-size: 12px; font-weight: 720; margin: 0; }
+    .identity-list { border-top: 1px solid #d4dacd; padding-top: 13px; }
+    .identity-row { display: grid; grid-template-columns: 110px 1fr; gap: 8px; margin: 8px 0; font-size: 13px; }
+    .identity-row span:first-child { color: #60736f; }
+    .identity-row strong { overflow-wrap: anywhere; }
+    .identity-row a { font-weight: 800; text-underline-offset: 3px; }
+    .identity-note { margin: 20px 0 0; border-radius: 8px; background: #e4ebd2; padding: 11px 12px; font-size: 12px; color: #4d654f; line-height: 1.5; }
+    main section { scroll-margin-top: 90px; }
+    .section { padding-block: 86px; }
+    .section + .section { border-top: 1px solid var(--border); }
+    .section-head { display:flex; align-items:end; justify-content: space-between; gap: 32px; margin-bottom: 34px; }
+    .section-head > div { max-width: 770px; }
+    .section-tag { margin: 0 0 12px; font-size: 12px; font-weight: 900; letter-spacing: .15em; color: #69832d; text-transform: uppercase; }
+    .section-head h2 { margin-bottom: 0; font-size: clamp(30px,4vw,49px); letter-spacing: -.055em; line-height: 1.13; }
+    .section-head p { color: #61717a; margin: 17px 0 0; max-width: 770px; line-height: 1.83; }
+    .side-notation { border-left: 2px solid #cbd0c7; max-width: 210px; padding-left: 17px; font-size: 12px; color: #7b8784; line-height: 1.8; flex: 0 0 auto; }
+    .about-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 20px; }
+    .intro-card { background: var(--card); border: 1px solid var(--border); border-radius: 17px; padding: 31px; box-shadow: var(--shadow); }
+    .intro-card h3 { font-size: 20px; margin-bottom: 13px; letter-spacing: -.03em; }
+    .intro-card p { color: #53636b; line-height: 1.9; margin: 0; }
+    .intro-card strong { color: var(--ink); }
+    .code-card { background: #1b3038; border: 1px solid #38545b; color: #d8e6e3; border-radius: 17px; padding: 24px 27px; overflow: hidden; }
+    .code-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 15px; border-bottom: 1px solid #365058; margin-bottom: 14px; font-size: 12px; color: #a6c2b9; }
+    .code-dots { display: flex; gap: 5px; }
+    .code-dots i { display:block; width: 8px; height: 8px; background:#e19e8a; border-radius:50%; }
+    .code-dots i:nth-child(2) { background: #e4c778; }
+    .code-dots i:nth-child(3) { background: #a6d59f; }
+    .code-card pre { color:#d7e7e4; margin:0; white-space:pre-wrap; font-size: 13px; line-height: 1.9; font-family: Consolas, "Cascadia Code", ui-monospace, SFMono-Regular, monospace; }
+    .code-card .selector { color: #d4ec9b; }
+    .code-card .property { color: #a7d7df; }
+    .code-card .value { color: #f3b99f; }
+    .code-card .comment { color:#91aaa3; }
+    .exercises-section { background: var(--paper-2); }
+    .tools-row { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 21px; }
+    .search-wrap { position: relative; width: min(490px, 100%); }
+    .search-wrap svg { position:absolute; left: 17px; top:50%; transform: translateY(-50%); pointer-events:none; stroke: #75857f; }
+    .search-wrap input { width: 100%; min-height: 50px; padding: 11px 18px 11px 48px; border:1px solid #d9dfd4; background:#fff; color:var(--ink); border-radius:11px; outline:none; }
+    .search-wrap input:focus { border-color:#7fa356; box-shadow:0 0 0 3px rgba(149,183,85,.13); }
+    .result-count { color:#6a7979; font-size:13px; white-space:nowrap; }
+    .modules { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+    .module { background: var(--card); border: 1px solid #dce1d8; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 22px rgba(30,44,34,.027); }
+    .module:last-child:nth-child(odd) { grid-column: span 2; }
+    .module-top { display:flex; gap:16px; align-items: start; padding: 24px 25px 19px; border-bottom:1px solid #ebeee7; }
+    .module-index { font-size: 11px; background:#ebf1d6; color:#60792e; border-radius:7px; padding:5px 9px; font-weight: 950; letter-spacing:.1em; white-space: nowrap; }
+    .module h3 { margin: 0 0 4px; font-size: 20px; line-height:1.2; letter-spacing:-.035em; }
+    .module-desc { margin:0; color:#68787d; font-size:12.5px; line-height:1.6; }
+    .exercise-list { padding: 9px 15px 16px; }
+    .exercise-link { display:grid; grid-template-columns: 48px minmax(0,1fr) auto; gap: 11px; align-items:center; padding: 12px 11px; border-bottom:1px solid #eff0eb; border-radius:6px; text-decoration:none; transition:background .16s; }
+    .exercise-link:last-child { border-bottom:none; }
+    .exercise-link:hover { background: #f0f5e3; }
+    .exercise-link:focus-visible { outline-offset:-2px; }
+    .exercise-link[hidden], .module[hidden] { display: none; }
+    .exercise-no { color: #6b8743; font-weight:900; font-size: 12px; font-variant-numeric:tabular-nums; }
+    .exercise-title { color:#25343a; font-size:13px; font-weight:750; line-height:1.45; }
+    .exercise-sub { display:block; margin-top: 2px; font-size:11px; color:#75847e; font-weight:500; }
+    .go-arrow { font-size:19px; color:#799052; font-weight:700; line-height:1; }
+    .exercise-link:hover .go-arrow { transform:translateX(2px); }
+    .search-empty { display:none; text-align:center; background: var(--card); border:1px dashed #aebcac; padding:26px 20px; border-radius:13px; color:#58706b; margin-top:15px; }
+    .search-empty.visible { display:block; }
+    .below-exercises { display:flex; flex-wrap:wrap; justify-content:space-between; gap:18px; color:#677779; font-size: 12px; margin-top: 20px; }
+    .below-exercises strong { color:#375648; }
+    .knowledge-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:17px; }
+    .knowledge-card { min-height: 243px; border:1px solid var(--border); border-radius:15px; background:var(--card); padding:25px 22px; box-shadow:var(--shadow); }
+    .knowledge-num { display:inline-grid; place-items:center; width:39px; height:39px; border-radius:9px; background:#e7eedc; color:#55734c; font-size:14px; font-weight:950; margin-bottom:19px; }
+    .knowledge-card h3 { font-size:17px; letter-spacing:-.03em; line-height:1.3; margin-bottom:11px; }
+    .knowledge-card p { color:#66737a; font-size:13px; line-height:1.8; margin:0; }
+    .debug-section { background: #fffefb; }
+    .debug-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .debug-item { border-left:3px solid var(--rust); background:#f7f5ee; padding:21px 23px 20px; border-radius:0 11px 11px 0; }
+    .debug-label { font-size:11px; color:#9b664f; font-weight:900; letter-spacing:.14em; text-transform:uppercase; }
+    .debug-item h3 { font-size:17px; margin:9px 0; letter-spacing:-.035em; }
+    .debug-item p { font-size:13px; color:#63726e; line-height:1.85; margin:0; }
+    .reflection-section { background: #e9efdc; border-top:1px solid #d0ddc5; }
+    .reflection-layout { display:grid; grid-template-columns:.62fr 1.38fr; gap:52px; align-items: start; }
+    .reflection-layout h2 { font-size:clamp(30px,4vw,46px); line-height:1.12; letter-spacing:-.05em; margin:0 0 19px; }
+    .reflection-intro { color:#667a62; font-size:14px; max-width:310px; }
+    .quote-panel { position:relative; background: #fffefb; border: 1px solid #d6dfce; border-radius: 15px; padding:35px 36px; box-shadow:var(--shadow); }
+    .quote-panel:before { content:'“'; position:absolute; right:22px; top:-29px; font-family: Georgia, serif; font-size:110px; color:#c9d9ad; line-height:1; pointer-events:none; }
+    .quote-panel p { position:relative; color:#33464a; font-size:15px; line-height:2; margin:0; }
+    .quote-meta { color:#73846f; margin-top:21px; padding-top:15px; border-top:1px solid #e6e9df; font-size:12px; font-weight:750; }
+    .application-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-top:24px; }
+    .application-card { display:flex; align-items: center; gap:12px; border:1px solid #dbe4d0; border-radius:10px; background:#f7faf1; padding:15px; font-size:13px; font-weight:750; }
+    .application-card b { display:grid; place-items:center; background:#deedc1; color:#4a6d36; width:30px; height:30px; flex:0 0 30px; border-radius:8px; font-size:14px; }
+    footer { padding:36px 0; background:var(--ink); color:#c0d2cd; }
+    .footer-inner { display:flex; justify-content:space-between; gap:18px; align-items:center; flex-wrap:wrap; }
+    .footer-inner strong { display:block; color:#eff7ed; font-size:14px; }
+    .footer-inner span { display:block; font-size:12px; color:#91aaa6; margin-top:3px; }
+    .footer-inner a { color:#d8efaa; font-size:13px; text-underline-offset:4px; }
+    @media (max-width: 1040px) {
+      .hero-grid { grid-template-columns:1fr .8fr; gap:32px; }
+      .hero-grid { padding-block:61px; }
+      .identity { padding: 23px 20px; }
+      .identity-main { grid-template-columns:86px 1fr; gap:15px; }
+      .avatar { width:86px; height:105px; }
+      .knowledge-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    }
+    @media (max-width: 780px) {
+      .wrap { width:min(100% - 36px, 680px); }
+      .head-inner { min-height:68px; }
+      .nav { gap:12px; }
+      .nav a:not(.nav-primary) { display:none; }
+      .hero-grid { grid-template-columns:1fr; gap:34px; padding-block:57px 62px; }
+      .hero h1 { max-width:670px; }
+      .identity { transform:none; max-width:520px; }
+      .about-grid, .reflection-layout { grid-template-columns:1fr; gap:18px; }
+      .section { padding-block:62px; }
+      .section-head { display:block; }
+      .side-notation { margin-top:16px; max-width:none; }
+      .debug-grid { grid-template-columns:1fr; }
+      .modules { grid-template-columns:1fr; }
+      .module:last-child:nth-child(odd) { grid-column:auto; }
+      .application-grid { grid-template-columns:1fr; }
+    }
+    @media (max-width: 500px) {
+      .wrap { width:calc(100% - 30px); }
+      .brand-copy span { font-size:9px; }
+      .nav .nav-primary { font-size:12px; padding:8px 11px; }
+      .hero-grid { padding-block:45px 48px; }
+      h1 { font-size:clamp(40px,10vw,54px); }
+      .hero-actions { flex-direction:column; align-items:stretch; }
+      .identity-main { grid-template-columns:86px 1fr; }
+      .identity-row { grid-template-columns:90px 1fr; font-size:12px; }
+      .section { padding-block:53px; }
+      .section-head h2 { font-size:32px; }
+      .section-head { margin-bottom:24px; }
+      .intro-card, .code-card { padding:23px; }
+      .knowledge-grid { grid-template-columns:1fr; }
+      .knowledge-card { min-height:0; }
+      .tools-row { display:block; }
+      .search-wrap { width:100%; }
+      .result-count { display:block; margin-top:9px; }
+      .module-top { padding:20px 18px 15px; }
+      .exercise-list { padding:8px 9px 13px; }
+      .exercise-link { grid-template-columns:41px 1fr auto; gap:8px; }
+      .quote-panel { padding:27px 23px; }
+      .below-exercises { flex-direction:column; gap:5px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *:before, *:after { scroll-behavior:auto!important; animation-duration:.01ms!important; transition-duration:.01ms!important; }
+    }
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua điều hướng</a>
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="brand" href="#top" aria-label="CSS Field Notes - Về đầu trang">
+      <span class="brand-mark">H.</span>
+      <span class="brand-copy"><strong>HUY / CSS LAB</strong><span>Front-end field notes</span></span>
+    </a>
+    <nav class="nav" aria-label="Điều hướng chính">
+      <a href="#overview">Giới thiệu</a>
+      <a href="#exercises">Bài thực hành</a>
+      <a href="#lessons">Đã học được gì</a>
+      <a href="#reflection">Tự đánh giá</a>
+      <a class="nav-primary" href="https://github.com/huypham32261020149-work" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Lab 07 / Advanced CSS: Layout</p>
+        <h1 id="hero-title">Layout không chỉ để <em>đẹp.</em><br>Nó phải biết thích nghi.</h1>
+        <p class="hero-lead">Xin chào, mình là <strong>Phạm Quang Huy</strong>. Đây không chỉ là nơi lưu bài tập CSS nâng cao, mà còn là những ghi chú về hành trình mình học cách kiểm soát bố cục, xử lý lỗi giao diện và làm cho website hoạt động tốt trên nhiều kích thước màn hình.</p>
+        <div class="hero-stats" aria-label="Tổng quan bài thực hành">
+          <span>19 Exercise</span><span>05 nhóm kiến thức</span><span>01 portfolio cá nhân</span>
+        </div>
+        <div class="hero-actions">
+          <a class="button button-main" href="#exercises">Khám phá bài thực hành <span aria-hidden="true">↗</span></a>
+          <a class="button button-ghost" href="#reflection">Đọc phần tự đánh giá <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <aside class="identity" aria-label="Thông tin sinh viên">
+        <div class="identity-top"><span>Student profile / 2026</span><b>UEH</b></div>
+        <div class="identity-main">
+          <div class="avatar" aria-label="Ảnh đại diện hoặc chữ viết tắt">
+            <span class="avatar-initials" aria-hidden="true">HQ</span>
+            <!-- Ảnh tùy chọn: tạo CSS-NangCao/assets/profile.jpg để hiển thị ảnh thật. -->
+            <img src="assets/profile.jpg" alt="Ảnh đại diện của Phạm Quang Huy" onerror="this.hidden=true">
+          </div>
+          <div>
+            <h2>Phạm Quang<br>Huy</h2>
+            <p class="role">Sinh viên UEH · Phát triển ứng dụng TMĐT</p>
+          </div>
+        </div>
+        <div class="identity-list">
+          <div class="identity-row"><span>MSSV</span><strong>32261020149</strong></div>
+          <div class="identity-row"><span>Lớp học phần</span><strong>26C1INF50902701</strong></div>
+          <div class="identity-row"><span>Giảng viên</span><strong>TS. Nguyễn Mạnh Tuấn</strong></div>
+          <div class="identity-row"><span>GitHub</span><a href="https://github.com/huypham32261020149-work" target="_blank" rel="noopener noreferrer">huypham32261020149-work ↗</a></div>
+        </div>
+        <p class="identity-note">“Hiểu nguyên lý trước, thử sai rồi mới tối ưu.” — cách mình tiếp cận Lab 07.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section wrap" id="overview" aria-labelledby="overview-title">
+    <div class="section-head">
+      <div>
+        <p class="section-tag">01 / Bắt đầu từ nền tảng</p>
+        <h2 id="overview-title">Một bài Lab, nhiều góc nhìn về giao diện.</h2>
+        <p>CSS nâng cao không chỉ là thêm hiệu ứng cho đẹp. Mình thực hành để hiểu phần tử nằm ở đâu, vì sao nội dung bị lệch, tại sao trang ổn trên desktop nhưng chưa phù hợp với điện thoại, và cách những thay đổi nhỏ trong code tạo ra khác biệt lớn trên giao diện.</p>
+      </div>
+      <div class="side-notation">Mục tiêu cuối cùng: vận dụng vào trang danh mục, chi tiết sản phẩm và những thành phần giao diện có tính tương tác của website TMĐT.</div>
+    </div>
+    <div class="about-grid">
+      <article class="intro-card">
+        <h3>Điều mình muốn hiểu sau Lab 07</h3>
+        <p>Thay vì chỉ làm theo kết quả mẫu, mình muốn biết <strong>vì sao bố cục hoạt động</strong>. Từ <strong>display, position, z-index</strong> đến <strong>float, clear</strong>, mỗi thuộc tính giúp mình nhìn rõ hơn cách trình duyệt sắp xếp các phần tử. Các bài <strong>media queries, viewport, transitions và Bootstrap</strong> tiếp tục kết nối kiến thức đó với những trải nghiệm web thực tế.</p>
+      </article>
+      <div class="code-card" role="img" aria-label="Minh họa code CSS responsive và hiệu ứng hover">
+        <div class="code-toolbar"><span>field-notes.css</span><div class="code-dots" aria-hidden="true"><i></i><i></i><i></i></div></div>
+        <pre><span class="comment">/* Giao diện tốt cần có lý do */</span>
+<span class="selector">.product-card:hover</span> {
+  <span class="property">transform</span>: <span class="value">translateY(-4px)</span>;
+  <span class="property">transition</span>: <span class="value">.25s ease</span>;
+}
+
+<span class="selector">@media (max-width: 480px)</span> {
+  <span class="selector">.product-grid</span> {
+    <span class="property">grid-template-columns</span>: <span class="value">1fr</span>;
+  }
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="section exercises-section" id="exercises" aria-labelledby="exercises-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="section-tag">02 / Bài thực hành</p>
+          <h2 id="exercises-title">19 Exercise. 5 chặng khám phá.</h2>
+          <p>Danh sách được chia theo đúng các nhóm trong tài liệu Lab 07. Chọn một Exercise để mở trực tiếp trang thực hành tương ứng; phần lớn bài dùng file HTML/CSS riêng, riêng Exercise 7.13 tiếp tục sử dụng file của 7.12.</p>
+        </div>
+        <div class="side-notation">Mỗi liên kết dẫn đến mã nguồn đã chạy trên GitHub Pages nếu thư mục Lab07 được upload đầy đủ.</div>
+      </div>
+      <div class="tools-row">
+        <label class="search-wrap" for="exercise-search">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>
+          <input id="exercise-search" type="search" placeholder="Tìm bài: 7.12, viewport, animation..." autocomplete="off" aria-controls="exercise-modules">
+        </label>
+        <div class="result-count" id="result-count" role="status" aria-live="polite">Đang hiển thị 19/19 Exercise</div>
+      </div>
+      <div class="modules" id="exercise-modules">
+        <article class="module" data-group="position">
+          <div class="module-top"><span class="module-index">01 / 05</span><div><h3>Hiểu cách phần tử tồn tại</h3><p class="module-desc">Document flow · Positioning · Stacking</p></div></div>
+          <div class="exercise-list">
+            <a class="exercise-link" href="Lab07/lab07-exercise01.html" data-search="7.1 document flow display inline block"><span class="exercise-no">7.1</span><span class="exercise-title">Document Flow<span class="exercise-sub">Inline, block và thuộc tính display</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+            <a class="exercise-link" href="Lab07/lab07-exercise02.html" data-search="7.2 relative positioning top left"><span class="exercise-no">7.2</span><span class="exercise-title">Relative Positioning<span class="exercise-sub">Định vị tương đối và normal flow</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+            <a class="exercise-link" href="Lab07/lab07-exercise03.html" data-search="7.3 absolute positioning ancestor"><span class="exercise-no">7.3</span><span class="exercise-title">Absolute Positioning<span class="exercise-sub">Định vị theo positioned ancestor</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+            <a class="exercise-link" href="Lab07/lab07-exercise04.html" data-search="7.4 stacking z-index layer"><span class="exercise-no">7.4</span><span class="exercise-title">Stacking Using Z-Index<span class="exercise-sub">Thứ tự chồng lớp giữa các phần tử</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="module" data-group="float">
+          <div class="module-top"><span class="module-index">02 / 05</span><div><h3>Khi các phần tử bắt đầu “trôi”</h3><p class="module-desc">Float · Clear · Image Overlays</p></div></div>
+          <div class="exercise-list">
+            <a class="exercise-link" href="Lab07/lab07-exercise05.html" data-search="7.5 floating elements float left right"><span class="exercise-no">7.5</span><span class="exercise-title">Floating Elements<span class="exercise-sub">Float trái / phải và văn bản bao quanh</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+            <a class="exercise-link" href="Lab07/lab07-exercise06.html" data-search="7.6 floating in a container float"><span class="exercise-no">7.6</span><span class="exercise-title">Floating in a Container<span class="exercise-sub">Float bên trong vùng chứa article</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+            <a class="exercise-link" href="Lab07/lab07-exercise07.html" data-search="7.7 floating multiple items images"><span class="exercise-no">7.7</span><span class="exercise-title">Floating Multiple Items<span class="exercise-sub">Sắp xếp nhiều hình ảnh trên một hàng</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+            <a class="exercise-link" href="Lab07/lab07-exercise08.html" data-search="7.8 floating and clearing clear"><span class="exercise-no">7.8</span><span class="exercise-title">Floating and Clearing<span class="exercise-sub">Kiểm soát vị trí nội dung sau float</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+            <a class="exercise-link" href="Lab07/lab07-exercise09.html" data-search="7.9 using positioning caption overlay image"><span class="exercise-no">7.9</span><span class="exercise-title">Using Positioning<span class="exercise-sub">Caption và banner chồng trên ảnh</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="module" data-group="responsive">
+          <div class="module-top"><span class="module-index">03 / 05</span><div><h3>Một layout, nhiều màn hình</h3><p class="module-desc">Multi-column · Media Queries · Viewport</p></div></div>
+          <div class="exercise-list">
+            <a class="exercise-link" href="Lab07/lab07-exercise10.html" data-search="7.10 two-column layout float"><span class="exercise-no">7.10</span><span class="exercise-title">Two-Column Layout<span class="exercise-sub">Thanh điều hướng và nội dung chính</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+            <a class="exercise-link" href="Lab07/lab07-exercise11.html" data-search="7.11 three-column layout positioning"><span class="exercise-no">7.11</span><span class="exercise-title">Three-Column Layout<span class="exercise-sub">Ba cột dựa trên định vị</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+            <a class="exercise-link" href="Lab07/lab07-exercise12.html" data-search="7.12 media queries desktop mobile responsive"><span class="exercise-no">7.12</span><span class="exercise-title">Media Queries<span class="exercise-sub">CSS riêng cho desktop và mobile</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+            <a class="exercise-link" href="Lab07/lab07-exercise12.html" data-search="7.13 setting the viewport responsive navigation select dùng chung 7.12"><span class="exercise-no">7.13</span><span class="exercise-title">Setting the Viewport<span class="exercise-sub">Dùng chung file của Exercise 7.12</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="module" data-group="effects">
+          <div class="module-top"><span class="module-index">04 / 05</span><div><h3>Giao diện biết phản hồi</h3><p class="module-desc">Transforms · Transitions · Filters · Animations</p></div></div>
+          <div class="exercise-list">
+            <a class="exercise-link" href="Lab07/lab07-exercise14.html" data-search="7.14 transforms rotate skew translate scale"><span class="exercise-no">7.14</span><span class="exercise-title">Transforms<span class="exercise-sub">Xoay, nghiêng, di chuyển, co giãn</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+            <a class="exercise-link" href="Lab07/lab07-exercise15.html" data-search="7.15 transitions hover button color"><span class="exercise-no">7.15</span><span class="exercise-title">Transitions<span class="exercise-sub">Chuyển màu mượt khi hover</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+            <a class="exercise-link" href="Lab07/lab07-exercise16.html" data-search="7.16 more transitions scale shadow hover"><span class="exercise-no">7.16</span><span class="exercise-title">More Transitions<span class="exercise-sub">Kết hợp scale, màu sắc và bóng đổ</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+            <a class="exercise-link" href="Lab07/lab07-exercise17.html" data-search="7.17 filters grayscale contrast blur brightness sepia"><span class="exercise-no">7.17</span><span class="exercise-title">Filters<span class="exercise-sub">Biến đổi hình ảnh bằng CSS</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+            <a class="exercise-link" href="Lab07/lab07-exercise18.html" data-search="7.18 animations keyframes animation duration delay"><span class="exercise-no">7.18</span><span class="exercise-title">Animations<span class="exercise-sub">Chuyển động với @keyframes</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="module" data-group="bootstrap">
+          <div class="module-top"><span class="module-index">05 / 05</span><div><h3>Từ bài tập đến hệ thống giao diện</h3><p class="module-desc">Bootstrap Grid System · Navbar · Panel · Nested Columns</p></div></div>
+          <div class="exercise-list">
+            <a class="exercise-link" href="Lab07/lab07-exercise19.html" data-search="7.19 using bootstrap grid navbar panel list group jumbotron nested columns"><span class="exercise-no">7.19</span><span class="exercise-title">Using Bootstrap<span class="exercise-sub">Lưới 12 cột, navigation và các thành phần dựng sẵn</span></span><span class="go-arrow" aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      </div>
+      <div class="search-empty" id="search-empty">Không tìm thấy Exercise phù hợp. Thử từ khóa như “float”, “7.12”, “animation” hoặc “bootstrap”.</div>
+      <div class="below-exercises"><span><strong>Ghi chú:</strong> Exercise 7.13 sử dụng lại <code>Lab07/lab07-exercise12.html</code> theo hướng dẫn gốc.</span><span>Đường dẫn tương đối · Phù hợp GitHub Pages</span></div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="lessons" aria-labelledby="lessons-title">
+    <div class="section-head"><div><p class="section-tag">03 / Điều mình thực sự học được</p><h2 id="lessons-title">Không học thuộc thuộc tính. Học cách giải quyết vấn đề.</h2><p>Từ 19 Exercise, mình gom kiến thức thành bốn cách tư duy có thể mang sang bất kỳ website nào — nhất là giao diện bán hàng.</p></div></div>
+    <div class="knowledge-grid">
+      <article class="knowledge-card"><span class="knowledge-num">01</span><h3>Bố cục luôn có nguyên tắc</h3><p>Hiểu document flow trước khi chỉnh position, nắm stacking context trước khi sửa z-index. Biết vì sao phần tử nằm ở đó quan trọng hơn việc kéo nó đến đúng chỗ.</p></article>
+      <article class="knowledge-card"><span class="knowledge-num">02</span><h3>Float cần được kiểm soát</h3><p>Float giúp văn bản bao quanh ảnh và tạo cột, nhưng clear là bước cần thiết để các nội dung phía sau không bị “trôi” theo những phần tử trước đó.</p></article>
+      <article class="knowledge-card"><span class="knowledge-num">03</span><h3>Responsive không chỉ là thu nhỏ</h3><p>Media queries chọn quy tắc phù hợp, viewport giúp thiết bị di động tính đúng chiều rộng. Một giao diện tốt còn phải sắp xếp lại nội dung cho dễ đọc và thao tác.</p></article>
+      <article class="knowledge-card"><span class="knowledge-num">04</span><h3>Hiệu ứng phải có chủ đích</h3><p>Transform, transition, filter và animation đều có thể tạo điểm nhấn. Bootstrap giúp đẩy nhanh bố cục, nhưng mình vẫn cần hiểu CSS bên dưới để tùy biến hợp lý.</p></article>
+    </div>
+  </section>
+
+  <section class="section debug-section" id="notes" aria-labelledby="notes-title">
+    <div class="wrap">
+      <div class="section-head"><div><p class="section-tag">04 / Một chút chuyện hậu trường</p><h2 id="notes-title">Ba lần vướng lỗi, ba điều nhớ lâu.</h2><p>Những tình huống mình đã thực sự gặp khi làm Lab 07 khiến phần kiến thức này bớt trừu tượng hơn nhiều.</p></div></div>
+      <div class="debug-grid">
+        <article class="debug-item"><span class="debug-label">Exercise 7.6 · File path</span><h3>CSS đúng nhưng không thấy đổi?</h3><p>Nguyên nhân nằm ở đường dẫn stylesheet trong HTML đang trỏ nhầm sang Lab 05. Mình học được rằng trước khi sửa layout, hãy kiểm tra CSS đã được tải đúng chưa.</p></article>
+        <article class="debug-item"><span class="debug-label">Exercise 7.12 · Viewport</span><h3>430px mà vẫn ra desktop?</h3><p>Khi giả lập điện thoại, trang vẫn bị thu nhỏ như desktop. Thêm viewport giúp mình hiểu khác biệt giữa chiều rộng thiết bị và layout viewport mà media query sử dụng.</p></article>
+        <article class="debug-item"><span class="debug-label">Exercise 7.18 · Syntax</span><h3>Một dấu “;” gây ba lỗi.</h3><p>Chỉ vì thiếu dấu chấm phẩy sau animation-duration, VS Code cảnh báo nhiều dòng tiếp theo. Mình nhớ kiểm tra cú pháp nhỏ trước khi nghi ngờ cả animation.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reflection-section" id="reflection" aria-labelledby="reflection-title">
+    <div class="wrap">
+      <div class="reflection-layout">
+        <div><p class="section-tag">05 / Nhìn lại Lab 07</p><h2 id="reflection-title">Từ biết viết CSS đến hiểu CSS.</h2><p class="reflection-intro">Một ghi chép cá nhân sau khi hoàn thành các nội dung thực hành, thay vì một danh sách thuộc tính cần học thuộc.</p></div>
+        <article class="quote-panel">
+          <p>Trước khi thực hiện Lab 07, em thường nghĩ CSS chủ yếu là chỉnh màu, font và khoảng cách. Nhưng khi tự làm từng Exercise, em nhận ra bố cục là một hệ thống: chỉ cần thay đổi position, float hoặc viewport, cách các phần tử tương tác đã khác hẳn. Bài 7.12–7.13 khiến em nhớ nhất vì khi giảm màn hình xuống 430px, giao diện vẫn giữ kiểu desktop; chỉ khi hiểu viewport thì em mới biết nguyên nhân. Bài 7.18 cũng nhắc em rằng một dấu chấm phẩy nhỏ có thể ảnh hưởng đến animation. Với website thương mại điện tử, em muốn ứng dụng kiến thức này vào trang danh mục responsive, nhãn giảm giá trên ảnh và hiệu ứng hover vừa đủ. Em cần tiếp tục rèn kỹ năng debugging và thiết kế mobile-first.</p>
+          <div class="quote-meta">— Phạm Quang Huy · Ghi chú sau Lab 07</div>
+        </article>
+      </div>
+      <div class="application-grid" aria-label="Ứng dụng kiến thức trong thương mại điện tử">
+        <div class="application-card"><b>↔</b>Danh mục sản phẩm đa cột</div>
+        <div class="application-card"><b>◩</b>Menu responsive trên mobile</div>
+        <div class="application-card"><b>✦</b>Nhãn giảm giá &amp; hover sản phẩm</div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap footer-inner">
+    <div><strong>Phạm Quang Huy / CSS Field Notes</strong><span>32261020149 · Phát triển ứng dụng TMĐT · UEH · Lab 07</span></div>
+    <div><a href="#top">Trở lại đầu trang ↑</a> &nbsp; · &nbsp; <a href="https://github.com/huypham32261020149-work/ecommerce-ui-improvement" target="_blank" rel="noopener noreferrer">Xem repository trên GitHub ↗</a></div>
+  </div>
+</footer>
+<script>
+  // Bộ lọc tiện dụng khi cần tìm Exercise; các liên kết vẫn hoạt động khi tắt JavaScript.
+  const searchInput = document.getElementById('exercise-search');
+  const exerciseLinks = Array.from(document.querySelectorAll('.exercise-link'));
+  const modules = Array.from(document.querySelectorAll('.module'));
+  const count = document.getElementById('result-count');
+  const emptyMessage = document.getElementById('search-empty');
+  const normalizeText = (text) => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  searchInput.addEventListener('input', () => {
+    const term = normalizeText(searchInput.value.trim());
+    let visible = 0;
+    exerciseLinks.forEach((link) => {
+      const content = normalizeText(link.textContent + ' ' + link.dataset.search);
+      const matches = content.includes(term);
+      link.hidden = !matches;
+      if (matches) visible += 1;
+    });
+    modules.forEach((module) => {
+      module.hidden = !module.querySelector('.exercise-link:not([hidden])');
+    });
+    count.textContent = `Đang hiển thị ${visible}/${exerciseLinks.length} Exercise`;
+    emptyMessage.classList.toggle('visible', visible === 0);
+  });
+</script>
+</body>
+</html>
