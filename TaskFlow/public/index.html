@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#183d35">
+  <meta name="description" content="TaskFlow — không gian lên kế hoạch, làm việc tập trung và nhìn lại tiến độ của Huy.">
+  <title>TaskFlow · Kế hoạch của Huy</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Đi đến nội dung chính</a>
+  <div id="app" class="app-shell">
+    <button id="mobileBackdrop" class="mobile-backdrop" type="button" aria-label="Đóng điều hướng" hidden></button>
+    <aside id="sidebar" class="sidebar" aria-label="Điều hướng chính">
+      <div class="brand-row">
+        <a class="brand" href="#today" aria-label="TaskFlow — Hôm nay">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M3 3h26v26H3z"/><path d="m9 16 4.5 4.5L23 11" fill="none" stroke="#173d35" stroke-width="2.6" stroke-linecap="square"/></svg>
+          <span>taskflow<span class="brand-period">.</span></span>
+        </a>
+        <button id="sidebarClose" class="sidebar-close icon-btn" type="button" aria-label="Đóng điều hướng"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="workspace-label"><span>KHÔNG GIAN CÁ NHÂN</span><span class="version-mark">2.5</span></div>
+      <nav id="nav" class="main-nav">
+        <a href="#today" class="nav-link" data-view="today"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><span>Hôm nay</span><span id="todayCount" class="nav-count"></span></a>
+        <a href="#all" class="nav-link" data-view="all"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg><span>Tất cả công việc</span><span id="allCount" class="nav-count"></span></a>
+        <a href="#planner" class="nav-link" data-view="planner"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M16 3v4M8 3v4M3 10h18M8 14h2m4 0h2m-8 4h2"/></svg><span>Lịch tuần</span></a>
+        <a href="#board" class="nav-link" data-view="board"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="5" height="16" rx="1"/><rect x="10" y="4" width="5" height="11" rx="1"/><rect x="17" y="4" width="4" height="14" rx="1"/></svg><span>Bảng Kanban</span></a>
+        <a href="#matrix" class="nav-link" data-view="matrix"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M12 3v18M3 12h18"/></svg><span>Ma trận ưu tiên</span></a>
+        <div class="nav-divider"></div>
+        <a href="#focus" class="nav-link" data-view="focus"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6m-3 0v3m6 2 2-2"/></svg><span>Tập trung</span><span class="nav-focus-indicator" aria-hidden="true"></span></a>
+        <a href="#stats" class="nav-link" data-view="stats"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3v18h17M8 16v-4m5 4V7m5 9V4"/></svg><span>Nhìn lại tiến độ</span></a>
+      </nav>
+      <div class="sidebar-note"><span class="note-line"></span><p>Mỗi ngày, một chút<br>tiến bộ rõ ràng.</p></div>
+      <div class="sidebar-bottom">
+        <div class="sidebar-tools"><button id="settingsButton" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2"/><circle cx="15" cy="17" r="2"/></svg><span>Thiết lập</span></button><button id="helpButton" type="button" aria-label="Hướng dẫn sử dụng"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 .5c0 1.5-2.5 1.5-2.5 3.5M12 16h.01"/></svg><span>Hướng dẫn</span></button></div>
+        <div class="profile"><div class="profile-avatar" aria-hidden="true">H</div><div class="profile-copy"><strong id="profileName">Huy</strong><span>Không gian học tập & làm việc</span></div><span class="profile-monogram" aria-hidden="true">✦</span></div>
+        <div class="storage-status"><span id="storageLabel">Đang kết nối…</span><span>UEH · 2026</span></div>
+      </div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar">
+        <div class="topbar-left"><button id="menuToggle" class="icon-btn menu-toggle" type="button" aria-label="Mở điều hướng" aria-expanded="false" aria-controls="sidebar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><span class="breadcrumb-parent">Không gian của tôi</span><span class="breadcrumb-divider">/</span><strong id="breadcrumb">Hôm nay</strong></div>
+        <div class="topbar-right"><span id="headerDate" class="header-date"></span><button id="globalSearch" class="search-trigger" type="button" aria-label="Tìm kiếm công việc"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><span>Tìm kiếm</span><kbd>/</kbd></button><button id="addTask" class="btn btn-primary header-add" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Thêm công việc</span></button></div>
+      </header>
+      <main id="main" tabindex="-1"><div id="content"><div class="loading-state" role="status"><span class="loading-line"></span><p>Đang mở không gian của bạn…</p></div></div></main>
+      <footer class="workspace-footer"><span>TaskFlow <span class="footer-dot">·</span> Làm việc có chủ đích.</span><span>Được xây dựng cho Phạm Quang Huy</span></footer>
+    </div>
+  </div>
+  <dialog id="dialog" class="app-dialog" aria-label="Thông tin công việc"><button id="dialogClose" class="dialog-close icon-btn" type="button" aria-label="Đóng hộp thoại"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button><div id="dialogBody"></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <noscript><div class="noscript-message">TaskFlow cần JavaScript để quản lý công việc. Hãy bật JavaScript trong trình duyệt rồi tải lại trang.</div></noscript>
+</body>
+</html>
