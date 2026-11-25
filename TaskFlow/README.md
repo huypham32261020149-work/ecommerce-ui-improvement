@@ -273,33 +273,3 @@ Việc ghi được thực hiện trong transaction. Các phép tính lịch và
 | `POST /api/import` | Gộp dữ liệu đã kiểm tra hợp lệ. |
 
 Các thao tác ghi dữ liệu được kiểm tra tại server. Khi lịch đã thay đổi hoặc dữ liệu không còn phù hợp, API trả lỗi để người dùng xem lại thay vì ghi đè âm thầm.
-
-## 9. Kiểm thử
-
-Chạy từ thư mục dự án:
-
-```bash
-npm test
-```
-
-Bộ kiểm thử dùng dữ liệu tạm, không cần dùng dữ liệu cá nhân đang có. Các nhóm kiểm tra quan trọng gồm chuyển ngày, task lặp, ghi nhận hoàn thành, xung đột lịch, nhập dữ liệu, phiên tập trung và lưu trữ. Kết quả của lần chạy trên máy bạn được hiển thị trực tiếp trong Terminal.
-
-**Phạm vi xác minh:** lần chạy kiểm thử cuối trong quá trình xây dựng có **35/35 ca thành công**, gồm 21 ca nghiệp vụ, 8 ca API/lưu trữ và 6 ca kiểm tra hàm dựng nội dung giao diện. Nhóm giao diện chạy trong Node.js, không phải phiên trình duyệt hay kiểm thử tích hợp DOM. Môi trường xây dựng chưa cung cấp được phiên xem trước trình duyệt, nên chưa xác minh trực quan bố cục, kéo thả, bàn phím hoặc tương tác responsive trong trình duyệt thật. Không có ảnh chụp được dùng làm bằng chứng cho những phần chưa kiểm tra này. Xem [docs/TESTING.md](docs/TESTING.md) để biết phạm vi và cách tự nghiệm thu.
-
-Khi tự nghiệm thu giao diện, nên thử ít nhất: tạo task, sửa hạn chót, hoàn thành/mở lại, tìm kiếm, đổi bộ lọc, đặt giờ trùng lịch, kéo task trên Kanban, tải lại trang khi timer đang chạy, xuất/nhập dữ liệu và mở app ở chiều rộng điện thoại.
-
-## 10. Đưa mã nguồn lên GitHub và trình bày
-
-Đưa toàn bộ thư mục mã nguồn lên repository, gồm `README.md`, `PROMPTS.md`, `public/`, `lib/`, `tests/` và `docs/`. Không đưa dữ liệu cá nhân hoặc tệp cơ sở dữ liệu đang dùng lên repository.
-
-**GitHub Pages chỉ phục vụ website tĩnh, nên không trực tiếp chạy HTTP server Node.js và SQLite của bản này.** Để thầy kiểm tra toàn bộ tính năng, có thể clone/tải mã nguồn rồi chạy `node server.js`, hoặc dùng một máy chủ hỗ trợ Node.js và ổ lưu trữ bền vững. Bộ mã nguồn này không tự tạo một dịch vụ đang hoạt động trên Internet.
-
-Tài liệu chính thức: [GitHub Pages là gì?](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages) và [Node.js SQLite](https://nodejs.org/api/sqlite.html).
-
-Kịch bản thao tác khi trình bày: [docs/DEMO.md](docs/DEMO.md).
-
-## 11. Phạm vi của bản V2.5
-
-TaskFlow phù hợp cho một người sử dụng và cho mục đích thực hành. Server mặc định chỉ lắng nghe trên máy cục bộ. Chỉ chạy **một tiến trình server cho mỗi thư mục dữ liệu**. Bản này chưa có tài khoản đăng nhập, phân quyền, đồng bộ nhiều thiết bị, thông báo nền khi trình duyệt đóng, cộng tác nhóm hoặc kết nối Google Calendar. Không nên đưa nguyên trạng một server chứa dữ liệu cá nhân ra Internet như một dịch vụ nhiều người dùng.
-
-Các giới hạn và cách tính số liệu được trình bày trong [docs/FEATURES.md](docs/FEATURES.md), để người kiểm tra có thể phân biệt rõ chức năng đang có và hướng phát triển tiếp theo.
