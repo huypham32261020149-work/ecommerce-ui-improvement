@@ -1,0 +1,14 @@
+node_modules/
+data/*
+!data/.gitkeep
+data-clean/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+tests/.tmp/
+*.log
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example

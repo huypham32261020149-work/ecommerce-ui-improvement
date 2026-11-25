@@ -1,0 +1,43 @@
+✔ json: real HTTP CRUD, focus, soft delete and durable restart (74.539802ms)
+✔ sqlite: real HTTP CRUD, focus, soft delete and durable restart (67.137278ms)
+✔ HTTP rejects malformed bodies and cross-origin mutation; static assets bounded (9.742243ms)
+✔ concurrent slow JSON requests do not overwrite each other (10.993504ms)
+✔ V1 JSON auto-migration retains original and does not reseed empty data (4.46775ms)
+✔ V1 SQLite auto-migration retains original database and task metadata (22.284377ms)
+✔ json: SEED_DEMO=false starts fresh empty and never resets an existing store (3.109918ms)
+✔ sqlite: SEED_DEMO=false starts fresh empty and never resets an existing store (23.466345ms)
+✔ import rejects missing and cyclic repeat links atomically (3.292442ms)
+✔ Vietnam midnight and real calendar dates are exact (0.339701ms)
+✔ monthly recurrence keeps original day across February; weekdays and future dates (0.375284ms)
+✔ repeat completion creates one successor and preserves relative planned date (2.144015ms)
+✔ Top3 limit counts completed tasks and restore is atomic (2.008375ms)
+✔ overlapping blocks reject updates and adjacent blocks work (0.765081ms)
+✔ suggestions respect capacity, existing blocks and planned untimed cost (1.628519ms)
+✔ suggestion apply rechecks current data and never partially writes (1.791495ms)
+✔ today suggestions never place a block in elapsed time (1.010319ms)
+✔ Quick Add parses explicit Vietnamese rules without writing (2.255252ms)
+✔ focus pause excludes paused time, completion caps time, finish is idempotent (1.07053ms)
+✔ early focus completion records only elapsed seconds and survives task deletion (1.054696ms)
+✔ statistics use completed date, due-based denominator and chosen period (0.892954ms)
+✔ import V1 keeps IDs/dates, merges duplicates, and atomically rejects bad data (0.895317ms)
+✔ import and restore validate time conflicts; recurring anchor survives export (1.531774ms)
+✔ server-owned task fields and invalid settings are rejected without changes (0.690088ms)
+✔ same candidate moved by a new block requires a fresh preview token (1.067736ms)
+✔ expired focus preserves natural finish date through pause and delayed finish (0.531019ms)
+✔ editing monthly date intentionally resets anchor for following occurrence (0.615756ms)
+✔ recurrence cannot create an out-of-range planned date (1.424002ms)
+✔ demo origin survives exported backup merge without marking legacy data as demo (0.352781ms)
+✔ all seven views render complete data without invalid placeholders (61.417294ms)
+✔ empty data renders every view and zero-denominator statistics (14.529102ms)
+✔ user content stays text in views and edit/help/settings dialogs (30.421626ms)
+✔ focus setup survives view re-render; timer math excludes paused time (8.162857ms)
+✔ daily budget includes completed planned time and excludes unplanned deadlines (8.007999ms)
+✔ HTML shell contains unique required app targets and local module entry (0.462636ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 318.69754
